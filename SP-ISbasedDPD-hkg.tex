@@ -174,7 +174,7 @@ where
 \begin{align}\label{gc}
     \mathcal{F}(\boldsymbol{P},\mathring{\boldsymbol{t}})\triangleq\lim_{\rho\to \infty}\frac{e^{\rho \mathcal{L}_c(\boldsymbol{P},\mathring{\boldsymbol{t}})}}{\idotsint e^{\rho \mathcal{L}_c(\boldsymbol{P},\mathring{\boldsymbol{t}})}d\boldsymbol{p}_1(1) \cdots d\mathring{t}_Q}
 \end{align}
-It seems that the multidimensional grid search we attempt to avoid is transformed into several multidimensional integrations \eqref{MI1} and \eqref{MI2} bearing the same computational load. By closely analyzing the properties of function \eqref{gc}, however, it turns out that $\mathcal{F}(\boldsymbol{P},\mathring{\boldsymbol{t}})$ can be seen as a Probability Density Function (pdf) since it is nonnegative and integrates to one. As a pdf, furthermore, $\mathcal{F}(\boldsymbol{P},\mathring{\boldsymbol{t}})$ indicates the probability of the candidate values being true. The estimators in \eqref{MI1} and \eqref{MI2} can be regarded as statistical expectations, i.e., we have,
+Intuitively, as $\rho$ tends to infinity, $\mathcal{F}(\boldsymbol{P},\mathring{\boldsymbol{t}})$ becomes a Dirac-delta function centered at the maximum of $\mathcal{L}_c(\boldsymbol{P},\mathring{\boldsymbol{t}})$ whose location is indeed given by the set of integrals in \eqref{MI1} and \eqref{MI2}. It however, seems that the multidimensional grid search we attempt to avoid is transformed into several multidimensional integrations \eqref{MI1} and \eqref{MI2} bearing the same computational load. By closely analyzing the properties of function \eqref{gc}, fortunately, it turns out that $\mathcal{F}(\boldsymbol{P},\mathring{\boldsymbol{t}})$ can be seen as a Probability Density Function (pdf) since it is nonnegative and integrates to one. As a pdf, furthermore, $\mathcal{F}(\boldsymbol{P},\mathring{\boldsymbol{t}})$ indicates the probability of the candidate values being true. The estimators in \eqref{MI1} and \eqref{MI2} can be regarded as statistical expectations, i.e., we have,
 \begin{align}\label{ex}
     \hat{\boldsymbol{p}}_q(d)\triangleq \mathbb{E}_{\boldsymbol{P},\mathring{\boldsymbol{t}}}\{\boldsymbol{p}_q(d)\} \quad \hat{\mathring{t}}_q\triangleq \mathbb{E}_{\boldsymbol{P},\mathring{\boldsymbol{t}}}\{\mathring{t}_q\}
 \end{align}
@@ -335,7 +335,7 @@ STEP 5: Evaluate the $q$th marginal position pdf at new grid points with relativ
     g_{q}^{\text{mar}}(x_q^{(i')},y_q^{(j')})\simeq\frac{e^{\rho_1\ell (x_q^{(i')},y_q^{(j')})}}{\sum_{i'=1}^{I'}\sum_{j'=1}^{J'}e^{\rho_1\ell (x_q^{(i')},y_q^{(j')})}\delta x\delta y}
 \end{align}
 
-STEP 6: Compute the marginal coordinate $x_q$ pdf By approximating integrals with discrete sums in \eqref{gxgy},
+STEP 6: Compute the marginal coordinate $x_q$ pdf by approximating integrals with discrete sums in \eqref{gxgy},
 \begin{align}
     g_{x}^{\text{mar}}(x_q^{(i')})\simeq \sum_{j'=1}^{J'} g_{q}^{\text{mar}}(x_q^{(i')},y_q^{(j')})\delta y, \quad \forall x_q^{(i')}\in D_{\mathring{x}_q}
 \end{align}
@@ -345,23 +345,25 @@ STEP 7: Compute the coordinate $x_q$'s CDF as follows:
     G_{x_q}(x_q^{(r)})=\sum_{i'\leq r} g_{x}^{\text{mar}}(x_q^{(i')})\delta x, \quad \forall x_q^{(r)}\in D_{\mathring{x}_q} 
 \end{align}
 
-STEP 8: Generate $R$ realizations $\lbrace u_{x_q}^{(r)}\rbrace_{r=1}^R\sim U[0,1]$ and invert $G_{x_q}(\cdot)$ via linear interpolation in order to obtain the coordinate $x_q$ realizations $x_q^{(r)}=G_{x_q}^{-1}(u_{x_q}^{(r)})$ for $r=1,...,R$.
+The following steps are designed to generate the $r$th realization $(x_q^{(r)},y_q^{(r)},\mathring{t}_q^{(r)})$ corresponding to the $q$th emitter, i.e., for $r=1,...,R$,
 
-STEP 9: Given the realization $x_q^{(r)}$ for $r=1,...,R$, obtain the coordinate $y_q$ pdf conditioned on $x_q^{(r)}$ from the marginal position pdf (already evaluated in "STEP 1") as follows:
+STEP 8: Generate realization $u_{x_q}^{(r)}\sim U[0,1]$ and invert $G_{x_q}(\cdot)$ via linear interpolation in order to obtain the $r$th coordinate $x_q$ realizations $x_q^{(r)}=G_{x_q}^{-1}(u_{x_q}^{(r)})$.
+
+STEP 9: Given the $r$th realization $x_q^{(r)}$, obtain the conditional coordinate $y_q$ pdf from the marginal position pdf (already evaluated in "STEP 1") as follows:
 \begin{align}
     g_{y\vert x}^{\text{con}}(y_q^{(j')}\vert x_q^{(r)})\simeq \frac{g_{q}^{\text{mar}}(x_q^{(r)},y_q^{(j')})}{g_{x}^{\text{mar}}(x_q^{(r)})}
 \end{align}
 
 STEP 10: Evaluate the coordinate $y_q$'s CDF, $G_{y_q}(y_q^{(r)})$ similarly to $G_{x_q}(x_q^{(r)})$ in \eqref{Gxq} and generate the $r$th coordinate $y_q$ realizations, $y_q^{(r)}=G_{y_q}^{-1}(u_{y_q}^{(r)})$, using linear interpolation as well.
 
-STEP 11: Given the realization $\boldsymbol{p}_q^{(r)}=(x_q^{(r)},y_q^{(r)})$ for $r=1,...,R$, evaluate the $q$th conditional transmitted time pdf at new grid points with relatively small step $\delta \mathring{t}<\Delta \mathring{t}$, in the local interval $D_{\mathring{t}_q}$, as follows,
+STEP 11: Given the $r$th position realization $\boldsymbol{p}_q^{(r)}=(x_q^{(r)},y_q^{(r)})$, evaluate the $q$th conditional transmitted time pdf at new grid points with relatively small step $\delta \mathring{t}<\Delta \mathring{t}$, in the local interval $D_{\mathring{t}_q}$, as follows,
 \begin{align}
     g_{q}^{\text{con}}(\mathring{t}_q^{(s')} \vert \boldsymbol{p}_q^{(r)})=\frac{g_q(\boldsymbol{p}_q^{(r)},\mathring{t}_q^{(s')})}{\sum_{s'=1}^{S'} g_q(\boldsymbol{p}_q^{(r)},\mathring{t}_q^{(s')})\delta\mathring{t}}
 \end{align}
 
-STEP 12: Evaluate the transmitted time $\mathring{t}_q$'s CDF, $G_{\mathring{t}_q\vert \boldsymbol{p}_q}(\cdot)$ similarly to $G_{x_q}(x_q^{(r)})$ in \eqref{Gxq} and generate the $r$th transmitted time $\mathring{t}_q^{(r)}$ realizations, $\mathring{t}_q^{(r)}=G^{-1}_{\mathring{t}_q\vert \boldsymbol{p}_q}(u_{\mathring{t}_q}^{(r)})$, using linear interpolation as well.
+STEP 12: Evaluate the transmitted time $\mathring{t}_q$'s CDF, $G_{\mathring{t}_q\vert \boldsymbol{p}_q}(\cdot)$ similarly to $G_{x_q}(x_q^{(r)})$ in \eqref{Gxq} and generate the $r$th transmitted time realization, $\mathring{t}_q^{(r)}=G^{-1}_{\mathring{t}_q\vert \boldsymbol{p}_q}(u_{\mathring{t}_q}^{(r)})$, using linear interpolation as well.
 
-The distribution of marginal probability mass in the local area $D_{\mathring{x}_q}\times D_{\mathring{y}_q}$ is governed by the design parameter $\rho_1$ in the marginal pdf $g_{q}^{\text{mar}}(x_q,y_q)$. To be specific, the probability mass would concentrate at the maximum peak point $(\mathring{x}_q,\mathring{y}_q)$ as $\rho_1$ increases. The too large $\rho_1$ would result in that the points, included in local area but far away from the maximum peak point, are hardly to be sampled. The range parameter $\Delta_x$ and $\Delta_y$ should, therefore, match with $\rho_1$, in order to generate the required realizations efficiently.
+The distribution of probability mass in the local area $D_{\mathring{x}_q}\times D_{\mathring{y}_q}$ is governed by the design parameter $\rho_1$ in the marginal position pdf $g_{q}^{\text{mar}}(x_q,y_q)$. Similarly to \eqref{gc}, the probability mass would concentrate at the location of the maximum peak, $(\mathring{x}_q,\mathring{y}_q)$, as $\rho_1$ increases. The too large $\rho_1$ would result in that the points, included in local area but far away from the maximum peak point, are hardly to be sampled (as seen in Fig.). The range parameter $\Delta_x$ and $\Delta_y$ should, therefore, match with $\rho_1$, in order to generate the required realizations efficiently (as seen in Fig.).
 
 \section*{References}
 \bibliography{mybibfile}
