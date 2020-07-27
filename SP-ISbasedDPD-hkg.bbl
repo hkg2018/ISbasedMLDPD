@@ -1,0 +1,67 @@
+\begin{thebibliography}{1}
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+\expandafter\ifx\csname href\endcsname\relax
+  \def\href#1#2{#2} \def\path#1{#1}\fi
+
+\bibitem{DPD2005}
+A.~Weiss, A.J., Direct position determination of multiple radio signals,
+  EURASIP J. Adv. Signal Process 1 (2005) 37--49.
+\newblock \href {http://dx.doi.org/10.1155/ASP.2005.37}
+  {\path{doi:10.1155/ASP.2005.37}}.
+
+\bibitem{Golub1973The}
+G.~H. Golub, V.~Pereyra, The differentiation of pseudo-inverses and nonlinear
+  least squares problems whose variables separate, Siam Journal on Numerical
+  Analysis 10~(2) (1973) 413--432.
+\newblock \href {http://dx.doi.org/10.1137/0710036}
+  {\path{doi:10.1137/0710036}}.
+
+\bibitem{ISdoa2008}
+S.~S.~. Wang~H, Kay~S, An importance sampling maximum likelihood direction of
+  arrival estimator, IEEE Transactions on Signal Processing 56~(10) (2008)
+  5082--5092.
+\newblock \href {http://dx.doi.org/10.1109/TSP.2008.928504}
+  {\path{doi:10.1109/TSP.2008.928504}}.
+
+\bibitem{Kay2000Mean}
+S.~Kay, S.~Saha, Mean likelihood frequency estimation, Signal Processing IEEE
+  Transactions on 48~(7) (2000) 1937--1946.
+\newblock \href {http://dx.doi.org/10.1109/78.847780}
+  {\path{doi:10.1109/78.847780}}.
+
+\bibitem{Saha2002Maximum}
+S.~Saha, S.~M. Kay, Maximum likelihood parameter estimation of superimposed
+  chirps using monte carlo importance sampling, IEEE Transactions on Signal
+  Processing 50~(2) (2002) 224--230.
+\newblock \href {http://dx.doi.org/10.1109/78.978378}
+  {\path{doi:10.1109/78.978378}}.
+
+\bibitem{Wang2010Maximum}
+H.~Wang, S.~Kay, Maximum likelihood angle-doppler estimator using importance
+  sampling, IEEE Transactions on Aerospace and Electronic Systems 46~(2) (2010)
+  p.610--622.
+\newblock \href {http://dx.doi.org/10.1109/TAES.2010.5461644}
+  {\path{doi:10.1109/TAES.2010.5461644}}.
+
+\bibitem{Chen2008Joint}
+J.~Chen, Y.~C. Wu, S.~C. Chan, T.~S. Ng, Joint maximum-likelihood cfo and
+  channel estimation for ofdma uplink using importance sampling, IEEE
+  Transactions on Vehicular Technology 57~(6) (2008) 3462--3470.
+\newblock \href {http://dx.doi.org/10.1109/TVT.2008.920473}
+  {\path{doi:10.1109/TVT.2008.920473}}.
+
+\bibitem{Pincus1968A}
+M.~Pincus, A closed form solution of certain programming problems, Operations
+  Research 16~(3) (1968) 690--694.
+\newblock \href {http://dx.doi.org/10.1287/opre.16.3.690}
+  {\path{doi:10.1287/opre.16.3.690}}.
+
+\bibitem{Kay2006Intuitive}
+S.~M. Kay, Intuitive Probability and Random Processes Using MATLAB, Springer
+  Science,, 2006.
+\newblock \href {http://dx.doi.org/10.1007/0-387-24158-2_20}
+  {\path{doi:10.1007/0-387-24158-2_20}}.
+
+\end{thebibliography}
