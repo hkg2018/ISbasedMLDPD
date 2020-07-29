@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 \expandafter\ifx\csname url\endcsname\relax
   \def\url#1{\texttt{#1}}\fi
 \expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
@@ -63,5 +63,9 @@ S.~M. Kay, Intuitive Probability and Random Processes Using MATLAB, Springer
   Science,, 2006.
 \newblock \href {http://dx.doi.org/10.1007/0-387-24158-2_20}
   {\path{doi:10.1007/0-387-24158-2_20}}.
+
+\bibitem{Tirer2015High}
+T.~Tirer, A.~J. Weiss, High resolution direct position determination of radio
+  frequency sources, IEEE Signal Processing Letters 23~(2) (2015) 192--196.
 
 \end{thebibliography}
