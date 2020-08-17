@@ -79,10 +79,13 @@
 \end{frontmatter}
 
 \linenumbers
+\section{Introduction}
+The sources localization technique has been studied for several decades and applied in many practical applications to provide the location information, for instance, the Location-Based Services (LBS) in communication systems, wild-life tracking and targets detection in radar system. The classical localization methods are two-step processing. Firstly, intermediate parameters that rely on the location of the sources, like the angle of arrival (AOA), time difference of arrival(TDOA), Doppler frequency shift (DFS) or received signal strength (RSS), are estimated from the measurements of different receivers. The locations of sources are, then, estimated based on the intermediate parameters. The two-step method is sub-optimal since it Measures the intermediate parameters at each base station separately and independently, which ignores the constraint that the measurements must correspond to the same source position. The DPD approach has recently been proposed as a single-step localization technique. It has been verified that the DPD method outperforms the two-step method especially at low SNR and the two methods' performance converges together as SNR increases. Furthermore, an additional data association step to partition the intermediate estimated parameters into sets belonging to the same source is required in multiple sources scenario, which is avoided inherently in DPD method. In multiple sources scenario, the exact ML estimator can be derived but it requires a multi-dimensional search which is usually impractical. To sidestep the multi-dimensional search, the existing DPD methods resort to the subspace-based technique or the filtering technique such as the well-known Multiple Signal Classification (MUSIC) \cite{DPD2005}, the Match Filter (MF) \cite{2004Direct} and the Minimum Variance Distortionless Response (MVDR) filter \cite{Tirer2015High}. These techniques decouple the multiple sources localization problem into single source localization problem which requires only two or three dimensional space search. These methods, however, requires sufficient observation samples to achieve the asymptotic optimal performance at high SNR. To be specific, the MUSIC-DPD \cite{DPD2005} and MVDR-DPD \cite{Tirer2015High} both need sufficient observation samples to compute the sample covariance matrix and the MF-DPD \cite{2004Direct} also need sufficient observation samples to decouple the problem based on the independence among transmitted signals. While the number of observation samples is often limited for some practical reasons such as the request for real-time processing or the assumption that emitters are stationary during the observation. 
+
+In this paper, we resort to the optimization framework \cite{Kay2000Mean}, consisting of the Pincus' theorem \cite{Pincus1968A} and the Importance Sampling (IS) technique, to efficiently acquire the multi-dimensional ML solution using few observation samples. The major difficulty to use IS technique consists in generating the alternative parameter realizations (i.e., sampling) according to a given (multi-dimensional) pdf. Much like all the IS-based works mentioned in section \ref{sec3}, we design a factorable pdf on all involved parameters, which allows a very easy generation of the required parameter realizations. Numerical simulations shows that the proposed IS-based multidimensional ML estimator outperforms the subspace-based DPD techniques and the filtering-based DPD techniques in multiple sources scenario.
 
 \section{Problem Formulation}
-Given $Q$ adjacent narrow-band emitters and $L$ space separated base-stations which intercept the transmitted signals. Every base-station is equipped with an antenna array consisting of $M$ elements.To avoid the angle ambiguity, the carrier frequency is small than the inverse of the propagation time over the array aperture. Denote the $q$th emitter’s position by the vector of coordinates $\boldsymbol{p}_q\in \mathbb{R}^{D\times 1}$ (In general, $D=2$ for plane geometry or $D=3$ for solid geometry). The complex envelopes of the signals observed by the $j$th base-
-station array are given by
+Given $Q$ adjacent narrow-band emitters and $L$ space separated base-stations which intercept the transmitted signals. Every base-station is equipped with an antenna array consisting of $M$ elements.To avoid the angle ambiguity, the carrier frequency is small than the inverse of the propagation time over the array aperture. Denote the $q$th emitter’s position by the vector of coordinates $\boldsymbol{p}_q\in \mathbb{R}^{D\times 1}$ (In general, $D=2$ for plane geometry or $D=3$ for solid geometry). The complex envelopes of the signals observed by the $j$th base-station array are given by
 \begin{align}\label{yjt}
 \boldsymbol{y}_j(t)=\sum_{q=1}^Q\alpha_{q,j}\boldsymbol{a}_j(\boldsymbol{p}_q)s_q(t-\tau_j(\boldsymbol{p}_q)-\mathring{t}_q)+\boldsymbol{w}_{j}(t),\quad 0\leq t\leq T
 \end{align}
@@ -111,8 +114,8 @@ where
     \boldsymbol{\alpha}_j&\triangleq[\alpha_{1,j},...,\alpha_{Q,j}]^T\in \mathbb{C}^{Q\times 1} 
 \end{align}
 $\boldsymbol{P},\mathring{\boldsymbol{t}}$ are the sets of emitters' positions and transmitted times respectively.
-Collecting and catenating all the $N$ coefficients of the $l$th section of the $j$th received signal,
-\begin{align}
+Collecting and stacking all the $N$ coefficients of the $l$th section of the $j$th received signal,
+\begin{align}\label{y_jl}
     \boldsymbol{y}_j(l)=\boldsymbol{\Gamma}_{j,l}(\boldsymbol{P},\mathring{\boldsymbol{t}})\boldsymbol{\alpha}_j+\boldsymbol{w}_j(l)
 \end{align}
 where
@@ -124,36 +127,36 @@ where
 The problem that we address now is stated as follow: Given the measurements $\lbrace\boldsymbol{y}_j(l)\rbrace_{j,l=1}^{N_r,L}$, how to efficiently and accurately estimate the locations of the emitters $\boldsymbol{P}$.
 
 \section{the Concentrated Likelihood Function}
-In this subsection, we will derive the \emph{Concentrated} Likelihood Function (CLF) that depends on the parameters of interest $\boldsymbol{P}$ and the auxiliary parameters $\mathring{\boldsymbol{t}}$. The transmitted times are conducive to acquiring the location information from the propagation delay $\tau_j(\boldsymbol{p})$ since the transmitted times are the same among base-stations. In fact, since $\boldsymbol{w}_j(l)$ are independent among different sections of different received signals and $\boldsymbol{w}_j(l)\sim N(\boldsymbol{0},\sigma^2\boldsymbol{I}_{NM})$, it can be shown that the Log Likelihood Function (LLF) after dropping the constant terms is given by,
+In this subsection, we will derive the \emph{Concentrated} Likelihood Function (CLF) that depends on the parameters of interest $\boldsymbol{P}$ and the auxiliary parameters $\mathring{\boldsymbol{t}}$. The transmitted times $\mathring{\boldsymbol{t}}$ are conducive to acquiring the location information from the propagation delay $\tau_j(\boldsymbol{p})$ since the base-stations are assumed to be synchronous. In fact, since $\boldsymbol{w}_j(l)$ in \eqref{y_jl} are independent among different sections of different received signals and have the identity distribution $\boldsymbol{w}_j(l)\sim N(\boldsymbol{0},\sigma^2\boldsymbol{I}_{NM})$, it can be shown that the Log Likelihood Function (LLF) of which the constant terms are dropped is given by,
 \begin{align}
 \mathcal{L}(\boldsymbol{P},\mathring{\boldsymbol{t}},\boldsymbol{\alpha})\triangleq-\sum_{j=1}^{N_r}\sum_{l=1}^L\Vert \boldsymbol{y}_j(l)-\boldsymbol{\Gamma}_{j,l}(\boldsymbol{P},\mathring{\boldsymbol{t}})\boldsymbol{\alpha}_j\Vert^2
 \end{align}
-where $\boldsymbol{P},\mathring{\boldsymbol{t}},\boldsymbol{\alpha}$ stand for any candidate values. Now, define the matrix
+To get a compact CLF, we define the manifold matrix for the $j$th received signal by collecting and stacking all the $L$ signal sections,
 \begin{align}\label{Gammaj}
     \boldsymbol{\Gamma}_{j}(\boldsymbol{P},\mathring{\boldsymbol{t}})\triangleq[\boldsymbol{\Gamma}_{j,1}^T,...,\boldsymbol{\Gamma}_{j,L}^T]^T\in \mathbb{C}^{LNM\times Q}
 \end{align}
-it can be shown that \eqref{L} is equivalent to 
+The CLF \eqref{L} can be rewritten as the compact one as follows,
 \begin{align}\label{L}
     \mathcal{L}(\boldsymbol{P},\mathring{\boldsymbol{t}},\boldsymbol{\alpha})=-\sum_{j=1}^{N_r}\Vert \boldsymbol{y}_j-\boldsymbol{\Gamma}_{j}(\boldsymbol{P},\mathring{\boldsymbol{t}})\boldsymbol{\alpha}_j\Vert^2
 \end{align}
-where $\boldsymbol{y}_j\triangleq[\boldsymbol{y}_j^T(1),...,\boldsymbol{y}_j^T(L)]^T$.Maximizing \eqref{L} jointly with respect to all parameters is extremely challenging. Yet, significant computational savings follow from the observation that for any given $\boldsymbol{P},\mathring{\boldsymbol{t}}$, the problem of finding the optimal $\lbrace \boldsymbol{\alpha}_j\rbrace _{j=1}^{N_r}$ becomes a linear least squares (LS) problem \cite{Golub1973The} whose solution is given by
+where $\boldsymbol{y}_j\triangleq[\boldsymbol{y}_j^T(1),...,\boldsymbol{y}_j^T(L)]^T$. Maximizing \eqref{L} jointly with respect to all parameters is extremely challenging. Yet, significant computational savings follow from the observation that for any given $\boldsymbol{P},\mathring{\boldsymbol{t}}$, the problem of finding the optimal $\lbrace \boldsymbol{\alpha}_j\rbrace _{j=1}^{N_r}$ becomes a linear least squares (LS) problem \cite{Golub1973The} whose solution is given by
 \begin{align}
     \hat{\boldsymbol{\alpha}}_j=\boldsymbol{\Gamma}_{j}^\dagger(\boldsymbol{P},\mathring{\boldsymbol{t}})\boldsymbol{y}_j
 \end{align}
-where $\boldsymbol{\Gamma}_{j}^\dagger$ is the Moore-Penrose pseudo-inverse of $\boldsymbol{\Gamma}_{j}$ given by $(\boldsymbol{\Gamma}_{j}^H\boldsymbol{\Gamma}_{j})^{-1}\boldsymbol{\Gamma}_{j}^H$. Note here that $\boldsymbol{\Gamma}_{j}$ has full column rank and, therefore, $(\boldsymbol{\Gamma}_{j}^H\boldsymbol{\Gamma}_{j})^{-1}$ always exists. Now, by substituting $\lbrace \hat{\boldsymbol{\alpha}}_j\rbrace _{j=1}^{N_r}$ for $\boldsymbol{\alpha}$ back in \eqref{L} and resorting to some straightforward algebraic manipulations, we obtain the so-called \emph{concentrated} likelihood function,
+where $\boldsymbol{\Gamma}_{j}^\dagger$ is the Moore-Penrose pseudo-inverse of $\boldsymbol{\Gamma}_{j}$ given by $(\boldsymbol{\Gamma}_{j}^H\boldsymbol{\Gamma}_{j})^{-1}\boldsymbol{\Gamma}_{j}^H$. Note that $(\boldsymbol{\Gamma}_{j}^H\boldsymbol{\Gamma}_{j})^{-1}$ always exists since $\boldsymbol{\Gamma}_{j}$ has full column rank. By substituting the estimations $\lbrace \hat{\boldsymbol{\alpha}}_j\rbrace _{j=1}^{N_r}$ back in \eqref{L} and resorting to some straightforward algebraic operations, we obtain the so-called \emph{concentrated} likelihood function,
 \begin{align}\label{CLF}
     \mathcal{L}_c(\boldsymbol{P},\mathring{\boldsymbol{t}})=\sum_{j=1}^{N_r}\boldsymbol{y}_j^H\boldsymbol{\Gamma}_{j}(\boldsymbol{\Gamma}_{j}^H\boldsymbol{\Gamma}_{j})^{-1}\boldsymbol{\Gamma}_{j}^H\boldsymbol{y}_j
 \end{align}
-The joint Maximum Likelihood (ML) estimates of $\boldsymbol{P}$ and $\mathring{\boldsymbol{t}}$ are then obtained as the solution to the following reduced-dimension optimization problem
+The joint Maximum Likelihood (ML) estimates of $\boldsymbol{P}$ and $\mathring{\boldsymbol{t}}$ are then obtained as,
 \begin{align}\label{MLE}
     [\hat{\boldsymbol{P}},\hat{\mathring{\boldsymbol{t}}}]=arg \max_{\boldsymbol{P},\mathring{\boldsymbol{t}}} \mathcal{L}_c(\boldsymbol{P},\mathring{\boldsymbol{t}})
 \end{align}
-The reduced-dimension optimization problem \eqref{MLE} still has $Q(D+1)$ unknown parameters (including the $D$-dimensional real-valued location vectors $\lbrace \boldsymbol{p}_q\rbrace_{q=1}^Q$ and $Q$ transmitted times $\lbrace \mathring{t}_q\rbrace_{q=1}^Q$) remain to estimate. The ML estimation will therefore requires a complex multidimensional search over the parameter space.
+The reduced-dimension optimization problem \eqref{MLE} still has $Q(D+1)$ unknown parameters (including $Q$ $D$-dimensional real-valued location vectors $\lbrace \boldsymbol{p}_q\rbrace_{q=1}^Q$ and $Q$ transmitted times scalar $\lbrace \mathring{t}_q\rbrace_{q=1}^Q$) remain to estimate. The ML estimation which takes exponential complexity will, therefore, requires a complex multidimensional search over the parameter space, which is impractical.
 
-To solve the multidimensional optimization problem \eqref{MLE}, the approach proposed in \cite{DPD2005} is to decouple the problem into several $D$-dimensional optimization problems under the assumption that the number of sections $L\to \infty$ or $L$ is sufficiently large in practice. Considering the length of section has low limit $T/L\gg \max{\tau_j(\boldsymbol{p}_q)}$, the number of sections $L$ is proportional to the total observation time $T$. The observation time $T$ is, however, limited in some practical reasons, like the request for real-time processing or the assumption that emitters are stationary during the observation. It is, therefore, difficult to be satisfied that $L$ is sufficiently large in some practical cases, which means the decouple approach proposed in \cite{DPD2005} may be failure, especially when the emitters are adjacent to one another.
+To solve the multidimensional optimization problem \eqref{MLE} efficiently, the approach proposed in \cite{DPD2005} is to decouple the problem into several $D$-dimensional optimization problems, under the assumption that the number of sections $L\to \infty$ or $L$ is sufficiently large in practice. Considering the length of section has low limit $T/L\gg \max{\tau_j(\boldsymbol{p}_q)}$, the number of sections $L$ is proportional to the total observation time $T$. The observation time $T$ is, however, limited in some practical reasons such as the request for real-time processing or the assumption that emitters are stationary during the observation. The decoupling approach proposed in \cite{DPD2005} may, therefore, be failure for the assumption is difficult to be satisfied in some practical cases, especially when the emitters are adjacent to one another.
 
-\section{Global Maximization of The CLF}
-As done previously within other estimation problems (see \cite{ISdoa2008,Kay2000Mean,Saha2002Maximum,Wang2010Maximum,Chen2008Joint}), we resort to the optimization framework, which is based on the Pincus' theorem and the powerful Importance Sampling (IS) method, to efficiently and accurately estimate the adjacent emitters' positions using limited observation time.
+\section{Global Maximization of The CLF}\label{sec3}
+Like the previous works within other estimation problems (\cite{ISdoa2008,Kay2000Mean,Saha2002Maximum,Wang2010Maximum,Chen2008Joint}), we resort to the optimization framework which consisting of the Pincus' theorem and the powerful Importance Sampling (IS) method to efficiently and accurately estimate the adjacent emitters' positions using finite observation resources such as the observation time, the signal bandwidth and the array aperture.
 First of all, we introduce the theorem of Pincus \cite{Pincus1968A} as follows.
 \theoremstyle{definition} \newtheorem{Theorem}{Theorem}
 \begin{Theorem}
@@ -162,7 +165,7 @@ First of all, we introduce the theorem of Pincus \cite{Pincus1968A} as follows.
     \hat{x}_i=\lim_{\rho\to \infty}\frac{\idotsint x_i e^{\rho F(\boldsymbol{x})}dx_1\cdots dx_n}{\idotsint e^{\rho F(\boldsymbol{x})}dx_1\cdots dx_n}
     \end{align}
 \end{Theorem}
-Applying this general result to our multidimensional optimization problem \eqref{MLE} with $\boldsymbol{x}\triangleq[\boldsymbol{P},\mathring{\boldsymbol{t}}]$ and $F(\boldsymbol{x})\triangleq \mathcal{L}_c(\boldsymbol{P},\mathring{\boldsymbol{t}})$ leads to the following expressions for the required ML estimators,
+Applying this general result to our multidimensional optimization problem \eqref{MLE} with $\boldsymbol{x}\triangleq[\boldsymbol{P},\mathring{\boldsymbol{t}}]$ and $F(\boldsymbol{x})\triangleq \mathcal{L}_c(\boldsymbol{P},\mathring{\boldsymbol{t}})$ leads to the following required ML estimation for the emitter locations and the transmitted times respectively,
 \begin{align}\label{MI1}
     \hat{\boldsymbol{p}}_q(d)=\idotsint \boldsymbol{p}_q(d) \mathcal{F}(\boldsymbol{P},\mathring{\boldsymbol{t}})d\boldsymbol{p}_1(1) \cdots d\mathring{t}_Q
 \end{align}
@@ -174,7 +177,9 @@ where
 \begin{align}\label{gc}
     \mathcal{F}(\boldsymbol{P},\mathring{\boldsymbol{t}})\triangleq\lim_{\rho\to \infty}\frac{e^{\rho \mathcal{L}_c(\boldsymbol{P},\mathring{\boldsymbol{t}})}}{\idotsint e^{\rho \mathcal{L}_c(\boldsymbol{P},\mathring{\boldsymbol{t}})}d\boldsymbol{p}_1(1) \cdots d\mathring{t}_Q}
 \end{align}
-Intuitively, as $\rho$ tends to infinity, $\mathcal{F}(\boldsymbol{P},\mathring{\boldsymbol{t}})$ becomes a Dirac-delta function centered at the maximum of $\mathcal{L}_c(\boldsymbol{P},\mathring{\boldsymbol{t}})$ whose location is indeed given by the set of integrals in \eqref{MI1} and \eqref{MI2}. It however, seems that the multidimensional grid search we attempt to avoid is transformed into several multidimensional integrations \eqref{MI1} and \eqref{MI2} bearing the same computational load. By closely analyzing the properties of function \eqref{gc}, fortunately, it turns out that $\mathcal{F}(\boldsymbol{P},\mathring{\boldsymbol{t}})$ can be seen as a Probability Density Function (pdf) since it is nonnegative and integrates to one. As a pdf, furthermore, $\mathcal{F}(\boldsymbol{P},\mathring{\boldsymbol{t}})$ indicates the probability of the candidate values being true. The estimators in \eqref{MI1} and \eqref{MI2} can be regarded as statistical expectations, i.e., we have,
+The Pincus' theorem can be interpreted intuitively as follows: as $\rho$ tends to infinity, $\mathcal{F}(\boldsymbol{P},\mathring{\boldsymbol{t}})$ becomes a Dirac-delta function centered at the maximum of $\mathcal{L}_c(\boldsymbol{P},\mathring{\boldsymbol{t}})$, which eliminates the integrals in \eqref{MI1} and \eqref{MI2} and chooses its center (i.e., the position of the maximum of $\mathcal{L}_c(\boldsymbol{P},\mathring{\boldsymbol{t}})$) as the ML solution directly. 
+
+Nevertheless, $\rho$ taking a sufficiently large value in practice, the multidimensional grid search we attempt to avoid is transformed into several multidimensional integrations in \eqref{MI1} and \eqref{MI2} bearing the same computational load. By closely analyzing the properties of function \eqref{gc}, it, fortunately, turns out that $\mathcal{F}(\boldsymbol{P},\mathring{\boldsymbol{t}})$ can be seen as a Probability Density Function (pdf) since it is nonnegative and integrates to one. As a pdf, $\mathcal{F}(\boldsymbol{P},\mathring{\boldsymbol{t}})$ indicates the probability of the candidate parameter values being true. Furthermore, the estimators in \eqref{MI1} and \eqref{MI2} can be regarded as statistical expectations, i.e., we have,
 \begin{align}\label{ex}
     \hat{\boldsymbol{p}}_q(d)\triangleq \mathbb{E}_{\boldsymbol{P},\mathring{\boldsymbol{t}}}\{\boldsymbol{p}_q(d)\} \quad \hat{\mathring{t}}_q\triangleq \mathbb{E}_{\boldsymbol{P},\mathring{\boldsymbol{t}}}\{\mathring{t}_q\}
 \end{align}
@@ -198,22 +203,23 @@ where $\eta(\boldsymbol{P},\mathring{\boldsymbol{t}})$ is called \emph{importanc
 \begin{align}\label{eta}
     \eta(\boldsymbol{P},\mathring{\boldsymbol{t}})\triangleq\frac{\mathcal{F}(\boldsymbol{P},\mathring{\boldsymbol{t}})}{\mathcal{G}(\boldsymbol{P},\mathring{\boldsymbol{t}})}
 \end{align}
-If $\mathcal{G}(\boldsymbol{P},\mathring{\boldsymbol{t}})$ is carefully designed, the expectations in \eqref{IS-ex} can be computed at any desired degree of accuracy (by increasing $R$) using the corresponding sample mean estimates. In fact, the choice of $\mathcal{G}(\boldsymbol{P},\mathring{\boldsymbol{t}})$ is a tradeoff between the ease and efficiency of sampling. The appropriate choice of the IF will be discussed in the following section. 
+If $\mathcal{G}(\boldsymbol{P},\mathring{\boldsymbol{t}})$ is carefully designed, the expectations in \eqref{IS-ex} can be computed at any desired degree of accuracy (by increasing $R$) using the corresponding sample mean estimates. In fact, the choice of $\mathcal{G}(\boldsymbol{P},\mathring{\boldsymbol{t}})$ is a tradeoff between the ease and efficiency of sampling (i.e., the generation of the required realizations). The appropriate choice of the IF will be discussed in the following section. 
 
 \section{Appropriate Choice of Importance Function}
-The appropriate $\mathcal{G}(\boldsymbol{P},\mathring{\boldsymbol{t}})$ must be designed as close as possible to $\mathcal{F}(\boldsymbol{P},\mathring{\boldsymbol{t}})$ while allowing at the same time the easy generation of the required parameters realizations $\lbrace \boldsymbol{P}^{(r)}\rbrace_{r=1}^R$ and $\lbrace \mathring{\boldsymbol{t}}^{(r)}\rbrace_{r=1}^R$. 
-In order to facilitate the process of generating the required $R$ parameter realizations, we constrain IF's form separable in terms of the $Q$ position-transmitted time pairs $\lbrace(\boldsymbol{p}_q,\mathring{t}_q)\rbrace_{q=1}^Q$. In other words, our ultimate goal is to design $\mathcal{G}(\boldsymbol{P},\mathring{\boldsymbol{t}})$ in a way that allows it to be factorized as follows,
+To generate the realizations efficiently, the appropriate $\mathcal{G}(\boldsymbol{P},\mathring{\boldsymbol{t}})$ must be designed as close as possible to $\mathcal{F}(\boldsymbol{P},\mathring{\boldsymbol{t}})$ while it should also take the ease of generating the required realizations $\lbrace \boldsymbol{P}^{(r)}\rbrace_{r=1}^R$ and $\lbrace \mathring{\boldsymbol{t}}^{(r)}\rbrace_{r=1}^R$ into account. 
+In order to find the appropriate $\mathcal{G}(\boldsymbol{P},\mathring{\boldsymbol{t}})$, we start with constraining IF's form separable in terms of the $Q$ position-transmitted time pairs $\lbrace(\boldsymbol{p}_q,\mathring{t}_q)\rbrace_{q=1}^Q$ for it is relative easy to generate realizations from pdf with the factorized form as follows,
 \begin{align}\label{SForm}
     \mathcal{G}(\boldsymbol{P},\mathring{\boldsymbol{t}})\triangleq \prod_{q=1}^Q g_q(\boldsymbol{p}_q,\mathring{t}_q)
 \end{align}
-This allow us to interpret the pdf of $Q(D+1)$-dimensional random vector as the joint pdf of $Q$ independent $(D+1)$-dimensional random vectors. Hence, we can independently generate $Q$ groups of realizations for $(D+1)$-dimensional random vectors $\lbrace(\boldsymbol{p}_q^{(r)},\mathring{t}_q^{(r)})\rbrace_{r,q=1}^{R,Q}$, instead of generating realizations for $Q(D+1)$-dimensional random vector $(\boldsymbol{P},\mathring{\boldsymbol{t}})$ directly using $\mathcal{G}(\boldsymbol{P},\mathring{\boldsymbol{t}})$. 
+This allow us to interpret the original pdf of $Q(D+1)$-dimensional random vector as the joint pdf of $Q$ independent $(D+1)$-dimensional random vectors. Hence, we can independently generate $Q$ groups of realizations for $(D+1)$-dimensional random vectors $\lbrace(\boldsymbol{p}_q^{(r)},\mathring{t}_q^{(r)})\rbrace_{r,q=1}^{R,Q}$, instead of generating realizations for $Q(D+1)$-dimensional random vector $(\boldsymbol{P},\mathring{\boldsymbol{t}})$ directly using $\mathcal{G}(\boldsymbol{P},\mathring{\boldsymbol{t}})$. 
 
-We start with the CLF \eqref{CLF}, the separable form \eqref{SForm} requests that the CLF has summation form with respect to $q$. Note that the product $\boldsymbol{y}_j^H\boldsymbol{\Gamma}_{j}$ in CLF is a $Q$-dimensional vector. Diagonalizing the inverse matrix $(\boldsymbol{\Gamma}_{j}^H\boldsymbol{\Gamma}_{j})^{-1}$ is, therefore, the key step to the separable form \eqref{SForm}. According to the definition of $\boldsymbol{\Gamma}_{j}$ in \eqref{Gammaj},  $\boldsymbol{\Gamma}_{j,l}$ in \eqref{Gammajl}, $\boldsymbol{\Gamma}_{j,n,l}$ in \eqref{Gammajnl} and $\boldsymbol{\gamma}_{j,q,n,l}$ in \eqref{gamma}, the $(u,v)$th element of the matrix product $\boldsymbol{\Gamma}_{j}^H\boldsymbol{\Gamma}_{j}$ is given by,
-\begin{align*}
-    [\boldsymbol{\Gamma}_{j}^H\boldsymbol{\Gamma}_{j}]_{u,v}&=\sum_{l=1}^L\sum_{n=1}^N \boldsymbol{\gamma}_{j,q,n,l}^H\boldsymbol{\gamma}_{j,q,n,l}\\
-    &=\underbrace{\boldsymbol{a}_j^H(\boldsymbol{p}_u)\boldsymbol{a}_j(\boldsymbol{p}_u)}_{r_{doa,j}^{(u,v)}}\underbrace{\sum_{n=1}^N e^{j2\pi f_n(\tau_j(\boldsymbol{p}_u)+\mathring{t}_u-\tau_j(\boldsymbol{p}_v)-\mathring{t}_v)}}_{r_{toa,j}^{(u,v)}}\underbrace{\sum_{l=1}^L s_u^\ast(n,l)s_v(n,l)}_{r_{s}^{(u,v)}}
-\end{align*}
-where $r_{doa,j}^{(u,v)}, r_{toa,j}^{(u,v)}, r_{s}^{(u,v)}$ denote the $(u,v)$th non-normalized correlation coefficients in aspects of Direction Of Arrival (DOA) and Time Of Arrival (TOA) at the $j$th base-station and the transmitted signal, respectively. The matrix $\boldsymbol{\Gamma}_{j}^H\boldsymbol{\Gamma}_{j}$ is, therefore, a correlation matrix among all emitters. To avoid additional computational load, we directly assume, instead of strict diagonalizing, $\boldsymbol{\Gamma}_{j}^H\boldsymbol{\Gamma}_{j}$, as diagonal matrix, at the cost of losing the correlation information. The diagonal matrix, for $j=1,...,N_r$, is given by,
+According to the definition of $\mathcal{F}(\boldsymbol{P},\mathring{\boldsymbol{t}})$ \eqref{gc}, the separable form \eqref{SForm} requests that the CLF in \eqref{gc} has summation form with respect to $q$. Note that the product $\boldsymbol{y}_j^H\boldsymbol{\Gamma}_{j}$ in CLF is a $Q$-dimensional vector. Diagonalizing the inverse matrix $(\boldsymbol{\Gamma}_{j}^H\boldsymbol{\Gamma}_{j})^{-1}$ is, therefore, the key step to the separable form \eqref{SForm}. According to the definition of $\boldsymbol{\Gamma}_{j}$ in \eqref{Gammaj},  $\boldsymbol{\Gamma}_{j,l}$ in \eqref{Gammajl}, $\boldsymbol{\Gamma}_{j,n,l}$ in \eqref{Gammajnl} and $\boldsymbol{\gamma}_{j,q,n,l}$ in \eqref{gamma}, the $(u,v)$th element of the normalized matrix product $\boldsymbol{\Gamma}_{j}^H\boldsymbol{\Gamma}_{j}$ is given by,
+\begin{align}\label{off-diagonal}
+    &[\frac{1}{MNL}\boldsymbol{\Gamma}_{j}^H\boldsymbol{\Gamma}_{j}]_{u,v}\\
+    &=\frac{1}{MNL}\sum_{l=1}^L\sum_{n=1}^N \boldsymbol{\gamma}_{j,q,n,l}^H\boldsymbol{\gamma}_{j,q,n,l}\\
+    &=\underbrace{\frac{1}{M}\boldsymbol{a}_j^H(\boldsymbol{p}_u)\boldsymbol{a}_j(\boldsymbol{p}_u)}_{r_{doa,j}^{(u,v)}}\underbrace{\frac{1}{N}\sum_{n=1}^N e^{j2\pi f_n(\tau_j(\boldsymbol{p}_u)+\mathring{t}_u-\tau_j(\boldsymbol{p}_v)-\mathring{t}_v)}}_{r_{toa,j}^{(u,v)}}\underbrace{\frac{1}{L}\sum_{l=1}^L s_u^\ast(n,l)s_v(n,l)}_{r_{s}^{(u,v)}}
+\end{align}
+where $r_{doa,j}^{(u,v)}, r_{toa,j}^{(u,v)}, r_{s}^{(u,v)}$ denote the $(u,v)$th normalized correlation coefficients in aspects of Direction Of Arrival (DOA), Time Of Arrival (TOA) and the transmitted signal, respectively. The matrix $\frac{1}{MNL}\boldsymbol{\Gamma}_{j}^H\boldsymbol{\Gamma}_{j}$ is, therefore, a normalized correlation matrix among all emitters. To avoid additional computational load, we directly assume, instead of strictly diagonalizing, $\frac{1}{MNL}\boldsymbol{\Gamma}_{j}^H\boldsymbol{\Gamma}_{j}$ as identity matrix, at the cost of losing the correlation information. As a consequence, the diagonal matrix, for $j=1,...,N_r$, is given by,
 \begin{align}\label{GammaDiag}
     \boldsymbol{\Gamma}_{j}^H\boldsymbol{\Gamma}_{j}=MNL\cdot \boldsymbol{I}
 \end{align}
@@ -229,16 +235,17 @@ where
     \tilde{\ell}_c(\boldsymbol{p}_q,\mathring{t}_q)\triangleq \sum_{j,n,l=1}^{N_r,N,L} \vert \boldsymbol{\gamma}_{j,q,n,l}^H\boldsymbol{y}_j(n,l)\vert ^2
 \end{align}
 
-Replacing $\mathcal{L}_c(\boldsymbol{P},\mathring{\boldsymbol{t}})$ and $\rho$ in \eqref{gc} with $\tilde{\mathcal{L}}_c(\boldsymbol{P},\mathring{\boldsymbol{t}})$ and an appropriate $\rho_2$, we get the separated form of $\mathcal{G}(\boldsymbol{P},\mathring{\boldsymbol{t}})$ \eqref{SForm} and the $q$th component is given by,
+Replacing $\mathcal{L}_c(\boldsymbol{P},\mathring{\boldsymbol{t}})$ and $\rho$ in \eqref{gc} with $\tilde{\mathcal{L}}_c(\boldsymbol{P},\mathring{\boldsymbol{t}})$ and an appropriate $\rho_2$ respectively, we get the separated form of $\mathcal{G}(\boldsymbol{P},\mathring{\boldsymbol{t}})$ of which the $q$th component is given by,
 \begin{align}\label{gq}
     g_q(\boldsymbol{p}_q,\mathring{t}_q)\triangleq\frac{e^{\rho_2 \tilde{\ell}_c(\boldsymbol{p}_q,\mathring{t}_q)}}{\int\int e^{\rho_2 \tilde{\ell}_c(\boldsymbol{p}_q,\mathring{t}_q)}d\boldsymbol{p}_qd\mathring{t}_q }
 \end{align}
+
 The generation of $q$th group of realizations $\lbrace(\boldsymbol{p}_q^{(r)},\mathring{t}_q^{(r)})\rbrace_{r=1}^{R}$ follows, furthermore, the well-known general result from probability theory, which is that the joint pdf, $g_q(\boldsymbol{p}_q,\mathring{t}_q)$, can be factorized as the product of marginal and conditional pdfs,
 \begin{align}
     g_q(\boldsymbol{p}_q,\mathring{t}_q)=g_{q}^{\text{mar}}(\boldsymbol{p}_q)g_{q}^{\text{con}}(\mathring{t}_q\vert \boldsymbol{p}_q)
 \end{align}
 
-The usual method to obtain the marginal pdf $g_{q}^{\text{mar}}(\boldsymbol{p}_q)$ is integrating the joint pdf $g_q(\boldsymbol{p}_q,\mathring{t}_q)$ with respect to the transmitted time $\mathring{t}_q$. The analytical  integration is, however, difficult since $g_q(\boldsymbol{p}_q,\mathring{t}_q)$ has very high non-linear about $\mathring{t}_q$. The discrete approximation is also involving $D+1$-dimensional grid search. We have another alternative method to construct $ g_{q}^{\text{mar}}(\boldsymbol{p}_q)$ directly and efficiently,
+The usual method to obtain the marginal pdf $g_{q}^{\text{mar}}(\boldsymbol{p}_q)$ is integrating the joint pdf $g_q(\boldsymbol{p}_q,\mathring{t}_q)$ with respect to the transmitted time $\mathring{t}_q$. The analytical  integration is, however, difficult since $g_q(\boldsymbol{p}_q,\mathring{t}_q)$ is extremely non-linear about $\mathring{t}_q$. The discrete approximation also involves $D+1$-dimensional grid search. We have another alternative method to construct $ g_{q}^{\text{mar}}(\boldsymbol{p}_q)$ directly and efficiently,
 \begin{align}\label{gmar}
     g_{q}^{\text{mar}}(\boldsymbol{p}_q)\triangleq\frac{e^{\rho_1\ell(\boldsymbol{p}_q)}}{\int e^{\rho_1\ell(\boldsymbol{p}_q)} d\boldsymbol{p}_q}
 \end{align} 
@@ -263,14 +270,14 @@ where
 \end{align}
 substituting \eqref{gammaqjl} and \eqref{Phi} into \eqref{glc}, we get
 \begin{align}
-    \tilde{\ell}_c(\boldsymbol{p}_q,\mathring{t}_q)&= \sum_{j=1}^{N_r} \sum_{l=1}^{L} \boldsymbol{\gamma}_{j,q,l}^H\boldsymbol{y}_j(l)\boldsymbol{y}_j^H(l)\boldsymbol{\gamma}_{j,q,l}\\
+    \tilde{\ell}_c(\boldsymbol{p}_q,\mathring{t}_q)&= \sum_{j=1}^{N_r} \sum_{l=1}^{L} \boldsymbol{\gamma}_{q,j,l}^H\boldsymbol{y}_j(l)\boldsymbol{y}_j^H(l)\boldsymbol{\gamma}_{q,j,l}\\
     &=\boldsymbol{b}^H(\mathring{t}_q)\underbrace{\left(\sum_{j=1}^{N_r} \sum_{l=1}^{L} \boldsymbol{\Phi}^H_{q,j,l}(\boldsymbol{p}_q)\boldsymbol{y}_j(l)\boldsymbol{y}_j^H(l)\boldsymbol{\Phi}_{q,j,l}(\boldsymbol{p}_q)\right)}_{\triangleq\boldsymbol{\Pi}_q(\boldsymbol{p}_q)} \boldsymbol{b}(\mathring{t}_q)
 \end{align}
 The right hand of the second equation is a non-normalized Rayleigh Quotient with respect to $\mathring{t}_q$. Consequently, maximizing $\tilde{\ell}_c(\boldsymbol{p}_q,\mathring{t}_q)$ with respect to $\mathring{t}_q$, we get,
 \begin{align}\label{ell_lambda}
     \ell_q(\boldsymbol{p}_q)\triangleq\lambda_{\text{max}}(\boldsymbol{\Pi}_q(\boldsymbol{p}_q))
 \end{align}
-Substituting \eqref{ell_lambda} into \eqref{gmar}, we get the marginal pdf of the $q$th emitter's position,
+where the notation $\lambda_{\text{max}}(\boldsymbol{X})$ denotes the maximum eigenvalue of the matrix $\boldsymbol{X}$. Substituting \eqref{ell_lambda} into \eqref{gmar}, we get the marginal pdf of the $q$th emitter's position,
 \begin{align}\label{gpq}
     g_{q}^{\text{mar}}(\boldsymbol{p}_q)=\frac{e^{\rho_1\lambda_{\text{max}}(\boldsymbol{\Pi}_q(\boldsymbol{p}_q))}}{\int e^{\rho_1\lambda_{\text{max}}(\boldsymbol{\Pi}_q(\boldsymbol{p}_q))} d\boldsymbol{p}_q}
 \end{align}
@@ -284,7 +291,7 @@ Substituting \eqref{gq} into \eqref{Conpdf}, we have,
 \end{align}
 Note that we use $\int_{\mathring{t}}e^{\rho_2 \tilde{\ell}_c(\boldsymbol{p}^{(r)}_q,\mathring{t}_q)}d\mathring{t}$, instead of $g_{q}^{\text{mar}}(\boldsymbol{p}_q^{(r)})$, to normalize the conditional pdf \eqref{Conpdf} correctly. 
 
-The process of generating the required realizations $\lbrace(\boldsymbol{p}_q^{(r)},\mathring{t}_q^{(r)})\rbrace_{r,q=1}^{R,Q}$ are as follows: for $q$th group of realizations, generate $\lbrace \boldsymbol{p}_q^{(r)}\rbrace_{r=1}^R$ using the marginal pdf $g_{q}^{\text{mar}}(\boldsymbol{p}_q)$ \eqref{gpq} and then use the conditional pdf $g_{q}^{\text{con}}(\mathring{t}_q\vert \boldsymbol{p}_q^{(r)})$ \eqref{gtq} to generate $\lbrace \mathring{t}_q\rbrace_{r=1}^R$.
+The process of generating the required realizations $\lbrace(\boldsymbol{p}_q^{(r)},\mathring{t}_q^{(r)})\rbrace_{r,q=1}^{R,Q}$ are as follows: for $q=1,...,Q$th group of realizations, generate $\lbrace \boldsymbol{p}_q^{(r)}\rbrace_{r=1}^R$ using the marginal pdf $g_{q}^{\text{mar}}(\boldsymbol{p}_q)$ \eqref{gpq} and then use the conditional pdf $g_{q}^{\text{con}}(\mathring{t}_q\vert \boldsymbol{p}_q^{(r)})$ \eqref{gtq} to generate $\lbrace \mathring{t}_q\rbrace_{r=1}^R$.
 
 \section{Generations Of The Required Realizations}
 We recall the following lemma \cite{Kay2006Intuitive} that will be used to generate the required realizations:
@@ -307,7 +314,7 @@ In conclusion, the approach of generating the $q$th group of realizations $\lbra
 In this section, we give all the necessary details for an efficient implementation of our proposed IS-based ML DPD algorithm. To narrow the range of sampling, we would like to generate the realizations around the true parameters. The area of interest, where emitters may be put in, is confined within $x\in [x_{\text{min}},x_{\text{max}}]$ and $y\in [y_{\text{min}},y_{\text{max}}]$ and the range of transmitted time is $\mathring{t}\in [0,\mathring{t}_{\text{max}}]$, where $\mathring{t}_{\text{max}}$ can be freely chosen as high as desired. The process of generating the required $Q$ groups of realizations amounts to performing the following steps for every $q=1,...,Q$: 
 
 STEP 1: Evaluate the $q$th SLF \eqref{ell_lambda} at multiple two-dimensional grid points $\lbrace(x_q^{(i)},y_q^{(j)})\rbrace_{i,j=1}^{I,J}$ with relatively large step $\Delta x$ and $\Delta y$. Then, by approximating integrals with discrete sums, we evaluate the $q$th marginal position pdf with respect to $\boldsymbol{p}_q=(x_q,y_q)$ in \eqref{gmar}, $g_{q}^{\text{mar}}(x_q,y_q)$, at every grid point in the whole area of interest $[x_{\text{min}},x_{\text{max}}]\times [y_{\text{min}},y_{\text{max}}]$, as follows, 
-\begin{align}
+\begin{align}\label{step1}
     g_{q}^{\text{mar}}(x_q^{(i)},y_q^{(j)})\simeq\frac{e^{\rho_1\ell_q (x_q^{(i)},y_q^{(j)})}}{\sum_{i=1}^I\sum_{j=1}^J e^{\rho_1\ell_q (x_q^{(i)},y_q^{(j)})}\Delta x\Delta y}
 \end{align}
 
@@ -323,7 +330,7 @@ STEP 3: Substitute the initial position estimation $\mathring{\boldsymbol{p}}_q=
 
 STEP 4: Initialize the estimation of the $q$th transmitted time $\mathring{t}_q$ as the grid point corresponding to the maximum peak of the conditional transmitted time pdf $g_{q}^{\text{con}}(\mathring{t}_q^{(s)} \vert \mathring{\boldsymbol{p}}_q)$.
 
-The distance between the initial estimator and the ML estimator in \eqref{MLE}, in the multidimensional parameter space, however, is non-negligible since the decouple processing in \eqref{GLc} lose the correlation information among emitters. To force $\lbrace(\boldsymbol{p}_q^{(r)},\mathring{t}_q^{(r)})\rbrace_{r=1}^{R}$ to be generated in the vicinity of the ML estimator $(\hat{\boldsymbol{p}}_q,\hat{\mathring{t}}_q)$, we fix the local parameter space to include the ML estimator as follows,
+The distance between the initial estimation and the ML solution in \eqref{MLE}, in the multidimensional parameter space, however, is non-negligible since the decouple processing in \eqref{GLc} lose the correlation information among emitters. To force $\lbrace(\boldsymbol{p}_q^{(r)},\mathring{t}_q^{(r)})\rbrace_{r=1}^{R}$ to be generated in the vicinity of the ML solutions $(\hat{\boldsymbol{p}}_q,\hat{\mathring{t}}_q)$, we fix the local parameter space to include the ML solutions as follows,
 \begin{align}
     D_{\mathring{x}_q}&\triangleq[\mathring{x}_q-\Delta_x,\mathring{x}_q+\Delta_x]\\
     D_{\mathring{y}_q}&\triangleq[\mathring{y}_q-\Delta_y,\mathring{y}_q+\Delta_y]\\
@@ -331,7 +338,7 @@ The distance between the initial estimator and the ML estimator in \eqref{MLE}, 
 \end{align}
 
 STEP 5: Evaluate the $q$th marginal position pdf $g_{q}^{\text{mar}}(x_q,y_q)$ at new grid points with relatively small step $\delta x<\Delta x$ and $\delta y<\Delta y$, in the local area $D_{\mathring{x}_q}\times D_{\mathring{y}_q}$, as follows,
-\begin{align}
+\begin{align}\label{step5}
     g_{q}^{\text{mar}}(x_q^{(i')},y_q^{(j')})\simeq\frac{e^{\rho_1\ell_q (x_q^{(i')},y_q^{(j')})}}{\sum_{i'=1}^{I'}\sum_{j'=1}^{J'}e^{\rho_1\ell_q (x_q^{(i')},y_q^{(j')})}\delta x\delta y}
 \end{align}
 
@@ -349,7 +356,7 @@ The following steps are designed to generate the $r$th realization $(x_q^{(r)},y
 STEP 8: Generate the $r$th RV $u_{x_q}^{(r)}\sim U[0,1]$ and invert $G_{x_q}(\cdot)$ via linear interpolation in order to obtain the $r$th coordinate $x_q$ realization $x_q^{(r)}=G_{x_q}^{-1}(u_{x_q}^{(r)})$.
 
 STEP 9: Given the $r$th realization $x_q^{(r)}$, obtain the conditional coordinate $y_q$ pdf from the marginal position pdf (already evaluated in "STEP 5") as follows:
-\begin{align}
+\begin{align}\label{step9}
     g_{y\vert x}^{\text{con}}(y_q^{(j')}\vert x_q^{(r)})\simeq \frac{g_{q}^{\text{mar}}(x_q^{(r)},y_q^{(j')})}{g_{x}^{\text{mar}}(x_q^{(r)})}
 \end{align}
 
@@ -362,7 +369,7 @@ STEP 11: Given the $r$th position realization $\boldsymbol{p}_q^{(r)}=(x_q^{(r)}
 
 STEP 12: Evaluate the transmitted time $\mathring{t}_q$'s CDF, $G_{\mathring{t}_q\vert \boldsymbol{p}_q}(\cdot)$ similarly to $G_{x_q}(x_q^{(r)})$ in \eqref{Gxq} and generate the $r$th transmitted time realization, $\mathring{t}_q^{(r)}=G^{-1}_{\mathring{t}_q\vert \boldsymbol{p}_q}(u_{\mathring{t}_q}^{(r)})$, using linear interpolation as well.
 
-All the required realizations $\lbrace(\boldsymbol{p}_q^{(r)},\mathring{t}_q^{(r)})\rbrace_{r,q=1}^{R,Q}$ can be generated according to the steps above. The $q$th expectations in \eqref{IS-ex}, which is also the ML estimator,  can be approximated based on these realizations as follows,
+All the required realizations $\lbrace(\boldsymbol{p}_q^{(r)},\mathring{t}_q^{(r)})\rbrace_{r,q=1}^{R,Q}$ can be generated according to the steps above. The $q$th expectations in \eqref{IS-ex}, which is also the ML solutions,  can be approximated based on these realizations as follows,
 \begin{align}\label{sae}
     \hat{\boldsymbol{p}}_q=\frac{1}{R}\sum_{r=1}^R\eta(\boldsymbol{P}^{(r)},\mathring{\boldsymbol{t}}^{(r)}) \boldsymbol{p}_q^{(r)},\quad \hat{\mathring{t}}_q=\frac{1}{R}\sum_{r=1}^R\eta(\boldsymbol{P}^{(r)},\mathring{\boldsymbol{t}}^{(r)}) \mathring{t}_q^{(r)}
 \end{align}
@@ -371,8 +378,8 @@ According to equations \eqref{eta},\eqref{gc},\eqref{SForm} and \eqref{gq}, the 
     &\eta(\boldsymbol{P}^{(r)},\mathring{\boldsymbol{t}}^{(r)})\triangleq A e^{\phi(\boldsymbol{P}^{(r)},\mathring{\boldsymbol{t}}^{(r)})}\\
     \phi(\boldsymbol{P}^{(r)},\mathring{\boldsymbol{t}}^{(r)}) &\triangleq \rho_0 \mathcal{L}_c(\boldsymbol{P}^{(r)},\mathring{\boldsymbol{t}}^{(r)})-\rho_2 \sum_{q=1}^Q \tilde{\ell}_c(\boldsymbol{p}^{(r)}_q,\mathring{t}_q^{(r)})
 \end{align}
-where $\rho_0$, instructed by the Pincus' theorem \eqref{Pincus}, acquires a sufficiently high value in practice. The scale factor $A$, which has absorbed the coefficient $R^{-1}$ in \eqref{sae}, involves the multidimensional integration. To greatly reduce the computational load and the memory with no changes in the final results, we can use the following \emph{normalized} IW,
-\begin{align}
+where $\rho_0$, instructed by the Pincus' theorem \eqref{Pincus}, is selected as a sufficiently high value in practice. The scale factor $A$, which has absorbed the coefficient $R^{-1}$ in \eqref{sae}, involves the multidimensional integration. To greatly reduce the computational load and the memory with no changes in the final results, we can use the following \emph{normalized} IW,
+\begin{align}\label{IWss}
     \bar{\eta}(\boldsymbol{P}^{(r)},\mathring{\boldsymbol{t}}^{(r)})=\frac{e^{\phi(\boldsymbol{P}^{(r)},\mathring{\boldsymbol{t}}^{(r)})-\max _r\phi(\boldsymbol{P}^{(r)},\mathring{\boldsymbol{t}}^{(r)})}}{\sum_{r=1}^R e^{\phi(\boldsymbol{P}^{(r)},\mathring{\boldsymbol{t}}^{(r)})-\max _r\phi(\boldsymbol{P}^{(r)},\mathring{\boldsymbol{t}}^{(r)})}}
 \end{align}
 The final IS based ML estimator is, therefore, given by
@@ -383,7 +390,7 @@ The final IS based ML estimator is, therefore, given by
 \begin{figure}[!t]
     \centerline{\includegraphics[width=1\textwidth]{pdfFigures/toolarge_rho1=500.pdf}}
     \centering
-	\caption{the marginal position pdf, with too large $\rho_1=500$, of two adjacent emitters at $\boldsymbol{p}_1=(0,500)$m and $\boldsymbol{p}_2=(0,-500)$m, the main simulation conditions are Signal to Noise Ratio (SNR)=$15$dB, the number of sections $L=10$, the number of elements $M=3$, the bandwidth $B_w=20kHz$ and the range $\Delta_x=\Delta_y=400$m.}\label{fig1}
+	\caption{the marginal position pdf, with too large $\rho_1=500$, of two adjacent emitters at $\boldsymbol{p}_1=(0,500)$m and $\boldsymbol{p}_2=(0,-500)$m, the main simulation conditions are SNR=$15$dB, the number of sections $L=10$, the number of elements $M=3$, the bandwidth $B_w=20$kHz and the range $\Delta_x=\Delta_y=400$m.}\label{fig1}
 \end{figure}
 
 \begin{figure}[!t]
@@ -394,22 +401,54 @@ The final IS based ML estimator is, therefore, given by
 
 Another detail about the super-parameter $\rho_1$ and $\rho_2$ remained to be stated. The distribution of probability mass in the local area $D_{\mathring{x}_q}\times D_{\mathring{y}_q}$ (or $D_{\mathring{t}_q}$) is governed by the super-parameter $\rho_1$ in the marginal position pdf $g_{q}^{\text{mar}}(x_q,y_q)$ (or $\rho_2$ in the conditional transmitted time pdf $g_{q}^{\text{con}}(\mathring{t}_q\vert \boldsymbol{p}_q^{(r)})$) . Similarly to \eqref{gc}, the probability mass of $g_{q}^{\text{mar}}(x_q,y_q)$ (or $g_{q}^{\text{con}}(\mathring{t}_q\vert \boldsymbol{p}_q^{(r)})$) would concentrate at the location of the maximum peak, $(\mathring{x}_q,\mathring{y}_q)$ (or $\mathring{t}_q$), as $\rho_1$ (or $\rho_2$) increases. The too large $\rho_1$ (or $\rho_2$) would result in that the points, included in local area but far away from the maximum peak point, are hardly to be sampled (as seen in Fig.\ref{fig1}). The range parameter $\Delta_x$, $\Delta_y$ (or $\Delta_{\mathring{t}}$) should, therefore, match with $\rho_1$ (or $\rho_2$), in order to generate the required realizations efficiently (as seen in Fig.\ref{fig2}). 
 
+\section{Complexity analysis}
+The main computation of IS-based ML DPD algorithm concentrates in the generation of the required realizations and the computation of the IWs. The generation process involves evaluating the marginal position pdf $g_{q}^{\text{mar}}(x_q^{(i)},y_q^{(j)})$ and the conditional transmitted time pdf $g_{q}^{\text{con}}(\mathring{t}_q^{(s)} \vert \mathring{\boldsymbol{p}}_q)$ at grids with different ranges and steps. The computational complexity, therefore, relies on the complexity of pdf and the number of grid points. According to the definition of $g_{q}^{\text{mar}}(x_q^{(i)},y_q^{(j)})$ \eqref{gpq}, its complexity is $\mathcal{O}(N^3)$ for the operation $\lambda_{\text{max}}$ involves the eigen-decomposition. The marginal position pdf $g_{q}^{\text{mar}}(x_q^{(i)},y_q^{(j)})$ is evaluated in \eqref{step1}, \eqref{step5} and \eqref{step9}, at  $IJ$, $I'J'$ and $RJ'$ grid points respectively. The complexity of the generation of $Q$ groups of $\lbrace(\boldsymbol{p}_q^{(r)})\rbrace_{r=1}^{R}$ is, therefore, about $\mathcal{O}(Q(IJ+I'J'+RJ')N^3)$. Analyzing the complexity of generation of $Q$ groups of $\lbrace(\mathring{t}_q^{(r)})\rbrace_{r=1}^{R}$ similarly, the complexity is about $\mathcal{O}(Q(S+RS')LNM)$. According to the definition of IWs in \eqref{IWss} and \eqref{IWw}, the computation of IWs involves evaluating the CLF \eqref{CLF} and \eqref{GLc} at the $Q$ group of realizations $\lbrace(\boldsymbol{p}_q^{(r)},\mathring{t}_q^{(r)})\rbrace_{q,r=1}^{Q,R}$, of which the complexity is about $\mathcal{O}(RQ(LNMN_r+Q^2))$. The total complexity of IS-based ML DPD is about $\mathcal{O}(Q(G_{\boldsymbol{p}}N^3+(G_{\mathring{t}}+RN_r)LNM+RQ^2))$ where $G_{\boldsymbol{p}}=IJ+I'J'+RJ'$ and $G_{\mathring{t}}=S+RS'$.
+
 \section{Numerical Simulation and Discussion}
-In this section, we design several numerical simulations to verify and evaluate the performance of the proposed IS based ML estimator, denoted by IS-ML-DPD, and compare it with the decoupled DPD estimator (assuming the number of sections $L\to \infty$) proposed in \cite{DPD2005} and the MVDR based DPD estimator proposed in \cite{Tirer2015High}, denoted by single-ML-DPD and MVDR-DPD respectively. To give an explicit comparison with the ML estimator \eqref{MLE}, we also give its performance curve that are obtained by an iterative local optimization method using the true emitters' positions as the initial point, denoted by optimal-ML-DPD.
+In this section, we design several numerical simulations to verify and evaluate the performance of the proposed IS based ML estimator, denoted by IS-ML-DPD, and compare it with the decoupled DPD estimator proposed in \cite{DPD2005} and the MVDR based DPD estimator proposed in \cite{Tirer2015High}, denoted by single-ML-DPD and MVDR-DPD respectively. To give an explicit comparison with the ML estimator \eqref{MLE}, we also give its performance curve that are obtained by an iterative local optimization method using the true emitters' positions as the initial point, denoted by optimal-ML-DPD.
+
+The decoupled DPD estimator in \cite{DPD2005}, single-ML-DPD, decouples the $Q(D+1)$-dimensional optimization problem into $Q$ independent $D+1$-dimensional optimization problems, through approximating the emitters' correlation matrix  using a diagonal matrix (similar to the equation \eqref{GammaDiag}). The off-diagonal elements of the normalized correlation matrix, i.e., the product of correlation coefficients in aspects of DOA, TOA and transmitted signal (shown in \eqref{off-diagonal}), tend to zero as the number of sections $L\to \infty$ since the transmitted signals among emitters are uncorrelated. The approximation in \cite{DPD2005}, consequently, may become inaccurate when the number of sections is limited in practice, which badly worsen the performance of single-ML-DPD estimator. 
+
+According to the multiplier effect, The off-diagonal elements \eqref{off-diagonal} can also tend to zero as the DOA or TOA correlation coefficient $r_{doa,j}^{(u,v)}, r_{toa,j}^{(u,v)}\to 0$, even though the number of sections is limited in practice. It means that some estimators with high resolution, like the MVDR filter, may acquire better performance. The MVDR based estimator in \cite{Tirer2015High}, MVDR-DPD, constructs the MVDR filter on the location domain directly. It is well known that the MVDR principle requires the Distortionless Response vector \eqref{gamma} keeps the same among data samples (signal sections), which means that the prior waveform information $s_q(n,l)$ has to be eliminated from the characteristic vector \eqref{gamma}. The MVDR-DPD estimator can, therefore, only use the DOA and TOA information to distinguish emitters. 
+
+We use the Root Mean Square Error (RMSE) of the first emitter's location estimation to measure the performance of each algorithm,
+\begin{align}
+    \text{RMSE}=\sqrt{\frac{\sum_{s=1}^S \Vert \boldsymbol{p}_1^{(s)}-\boldsymbol{p}_1\Vert ^2}{S}}
+\end{align}
+where the $S$ is the number of Monte Carlo simulations and we use $S=300$ to obtain the statistic results. 
+As illustrated in Fig.\ref{fig3}, we consider the scenario in which There are three Base Stations (BS) at $(2,2)$km, $(2,0)$km and $(2,-2)$km and $Q=2$ adjacent (relative to system's resolution) emitters at $\boldsymbol{p}_1=(0,500)$m and $\boldsymbol{p}_2=(0,-500)$m. Each BS is equipped with an Uniform Linear Array (ULA) of $M=3$ elements. The signals transmitted by the two emitters are two independent Gaussian random process. The Fourier coefficients of the transmitted signals are, consequently, complex Gaussian RVs, $s_q(n,l)\sim \mathcal{N}(0,\frac{10^{(SNR/10)}}{\sigma^2})$. The signal bandwidth is $20$kHz. The number of sections $L=10$ and the number of samples in each section is $N=5$. The transmitted time is selected from a Uniform Distribution $U[0,100\mu s]$.
+
+The super-parameter $\rho_0=666$ in IW' expressions \eqref{IWw} is set as large as possible while $\rho_1=20$ and $\rho_2=8$ are designed appropriately to make the ML solutions $\hat{\boldsymbol{p}}_q$ and $\hat{\mathring{t}}_q$ included in the main lobe of $g_{q}^{\text{mar}}(x_q,y_q)$ and $g_{q}^{\text{con}}(\mathring{t}_q\vert \boldsymbol{p}_q^{(r)})$ respectively. To match the size of the main lobe, the range parameters are set as $\Delta_x=\Delta_y=400$m and $\Delta_{\mathring{t}}=10\mu s$. These super-parameter values can be,statistically, acquired by plenty of simulations.
+
+Note that the transmitted signal correlation coefficient $r_s$ in \eqref{off-diagonal} would decrease until zero (the correlation information can be ignored) as the number of sections $L$ increases sufficiently, for the independence among $Q$ transmitted signals. Under the condition that $L$ is sufficiently large, the single-ML-DPD estimator would, therefore, achieve the performance of the optimal-ML-DPD estimator approximately. To indicate the IS-ML-DPD estimator's advantage in the case of few signal sections, we start with varying the number of sections $L$ between $10$ and $100$ in the first simulation. Fig.\ref{fig4} shows that all three IS-ML-DPD performance curves (corresponding to the number of realizations $R=100,500,2000$ respectively) locate in the gap between the performance curves of single-ML-DPD and optimal-ML-DPD. The localization accuracy of IS-ML-DPD improves as the number of realizations $R$ increase and achieves the accuracy of optimal-ML-DPD approximately at $R=2000$. The reason is that generating sufficient realizations can guarantee that the realizations in vicinity of the ML solutions can be sampled. It is worthy to note that $R=2000$ realizations is just a few in the $Q(D+1)=6$-dimensional parameter space. In another words, the complexity of brute searching in $Q(D+1)=6$-dimensional parameter space is about $\mathcal{O}(N_g^{Q(D+1)})$ ($Ng$ is the number of grid points for each dimension), which is significantly larger than the complexity of IS-ML-DPD. The MVDR-DPD estimator's localization RMSE is around half of the distance between the two emitters at all $L$ candidate values, which indicates that it fails to distinguish the two adjacent emitters at $SNR=5dB,Bw=20$kHz since the beforehand waveform information is not used sufficiently.
+
+Fig.\ref{fig5} shows that the RMSE of each algorithm varies with SNR in the second simulation. The SNR varies between $-5$dB and $15$dB. It can be seen that the IS-ML-DPD (The number of realizations $R=2000$) also achieves,approximately, the performance of the optimal-ML-DPD at all SNR. The reason why there is a performance gap between single-ML-DPD and the IS-ML-DPD is that there exist correlation among emitters for the limited observation resources ($B_w=20$kHz,$L=10$), which results in the interferences with one another. In such case, assuming the independence among emitters to decouple the multidimensional optimization problem is sub-optimal. On the condition of limited observation resources, the MVDR-DPD estimator is also unable to distinguish the two adjacent emitters until $SNR= 15$dB. The MVDR-DPD shows the higher resolution than single-ML-DPD and approximates the IS-ML-DPD at relatively high SNR.
+
+The first two simulations indicates that the single-ML-DPD and MVDR-DPD are sub-optimal in the case of limited observation resources while the IS-ML-DPD is able to achieve the performance of the optimal-ML-DPD approximately in the same case. To further validate this result, we gradually increase the signal bandwidth $B_w$ from $20$kHz to $800$kHz in the third simulation. As expected, the IS-ML-DPD outperforms the single-ML-DPD and MVDR-DPD, achieving the performance of the optimal-ML-DPD, at $B_w\leq400$kHz and all estimators' performance converge as the $B_w$ increases.
+
+\begin{figure}[!t]
+    \centerline{\includegraphics[width=1\textwidth]{pdfFigures/Senario.pdf}}
+    \centering
+	\caption{the simulation scenario}\label{fig3}
+\end{figure}
 
 \begin{figure}[!t]
     \centerline{\includegraphics[width=1\textwidth]{pdfFigures/QvsRMSE(opt-IS(R100-500-2000)-SML-MVDR(1))SNR5dB.pdf}}
     \centering
-	\caption{the RMSE of each estimator varies with the number of sections $L$.}\label{fig3}
+	\caption{the RMSE of each estimator varies with the number of sections $L$. The signal bandwidth is $20$kHz and the $SNR=5$dB.}\label{fig4}
 \end{figure}
 
 \begin{figure}[!t]
     \centerline{\includegraphics[width=1\textwidth]{pdfFigures/SNRvsRMSE(opt-IS(2000)-SML-MVDR(1))L10.pdf}}
     \centering
-	\caption{the RMSE of each estimator varies with the SNR.}\label{fig4}
+	\caption{the RMSE of each estimator varies with the SNR. The signal bandwidth is $20$kHz and the number of signal sections is $L=10$}\label{fig5}
 \end{figure}
 
-
+\begin{figure}[!t]
+    \centerline{\includegraphics[width=1\textwidth]{pdfFigures/BWvsRMSE(snr5dBL10).pdf}}
+    \centering
+	\caption{the RMSE of each estimator varies with the bandwidth.}\label{fig6}
+\end{figure}
 
 \section*{References}
 \bibliography{mybibfile}

@@ -11,6 +11,30 @@ A.~Weiss, A.J., Direct position determination of multiple radio signals,
 \newblock \href {http://dx.doi.org/10.1155/ASP.2005.37}
   {\path{doi:10.1155/ASP.2005.37}}.
 
+\bibitem{2004Direct}
+A.~J. Weiss, Direct position determination of narrowband radio transmitters,
+  2004, pp. 513--516.
+\newblock \href {http://dx.doi.org/10.1109/LSP.2004.826501}
+  {\path{doi:10.1109/LSP.2004.826501}}.
+
+\bibitem{Tirer2015High}
+T.~Tirer, A.~J. Weiss, High resolution direct position determination of radio
+  frequency sources, IEEE Signal Processing Letters 23~(2) (2015) 192--196.
+\newblock \href {http://dx.doi.org/10.1109/LSP.2015.2503921}
+  {\path{doi:10.1109/LSP.2015.2503921}}.
+
+\bibitem{Kay2000Mean}
+S.~Kay, S.~Saha, Mean likelihood frequency estimation, Signal Processing IEEE
+  Transactions on 48~(7) (2000) 1937--1946.
+\newblock \href {http://dx.doi.org/10.1109/78.847780}
+  {\path{doi:10.1109/78.847780}}.
+
+\bibitem{Pincus1968A}
+M.~Pincus, A closed form solution of certain programming problems, Operations
+  Research 16~(3) (1968) 690--694.
+\newblock \href {http://dx.doi.org/10.1287/opre.16.3.690}
+  {\path{doi:10.1287/opre.16.3.690}}.
+
 \bibitem{Golub1973The}
 G.~H. Golub, V.~Pereyra, The differentiation of pseudo-inverses and nonlinear
   least squares problems whose variables separate, Siam Journal on Numerical
@@ -24,12 +48,6 @@ S.~S.~. Wang~H, Kay~S, An importance sampling maximum likelihood direction of
   5082--5092.
 \newblock \href {http://dx.doi.org/10.1109/TSP.2008.928504}
   {\path{doi:10.1109/TSP.2008.928504}}.
-
-\bibitem{Kay2000Mean}
-S.~Kay, S.~Saha, Mean likelihood frequency estimation, Signal Processing IEEE
-  Transactions on 48~(7) (2000) 1937--1946.
-\newblock \href {http://dx.doi.org/10.1109/78.847780}
-  {\path{doi:10.1109/78.847780}}.
 
 \bibitem{Saha2002Maximum}
 S.~Saha, S.~M. Kay, Maximum likelihood parameter estimation of superimposed
@@ -52,20 +70,10 @@ J.~Chen, Y.~C. Wu, S.~C. Chan, T.~S. Ng, Joint maximum-likelihood cfo and
 \newblock \href {http://dx.doi.org/10.1109/TVT.2008.920473}
   {\path{doi:10.1109/TVT.2008.920473}}.
 
-\bibitem{Pincus1968A}
-M.~Pincus, A closed form solution of certain programming problems, Operations
-  Research 16~(3) (1968) 690--694.
-\newblock \href {http://dx.doi.org/10.1287/opre.16.3.690}
-  {\path{doi:10.1287/opre.16.3.690}}.
-
 \bibitem{Kay2006Intuitive}
 S.~M. Kay, Intuitive Probability and Random Processes Using MATLAB, Springer
   Science,, 2006.
 \newblock \href {http://dx.doi.org/10.1007/0-387-24158-2_20}
   {\path{doi:10.1007/0-387-24158-2_20}}.
-
-\bibitem{Tirer2015High}
-T.~Tirer, A.~J. Weiss, High resolution direct position determination of radio
-  frequency sources, IEEE Signal Processing Letters 23~(2) (2015) 192--196.
 
 \end{thebibliography}
