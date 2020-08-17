@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2020.6.2)  27 JUL 2020 13:28
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2020.6.2)  29 JUL 2020 12:42
 entering extended mode
 **SP-ISbasedDPD-hkg
 ("c:\Users\hkg20\Documents\Articles\IS based DPD\tex\SP-ISBasedDPD-hkg\SP-ISbasedDPD-hkg.tex"
@@ -358,33 +358,48 @@ Overfull \hbox (22.4648pt too wide) in paragraph at lines 303--305
 \OT1/cmr/m/n/10 In con-clu-sion, the ap-proach of gen-er-at-ing the $\OML/cmm/m/it/10 q$\OT1/cmr/m/n/10 th group of re-al-iza-tion-s $\OMS/cmsy/m/n/10 f\OT1/cmr/m/n/10 ([][]\OML/cmm/m/it/10 ; []\OT1/cmr/m/n/10 )\OMS/cmsy/m/n/10 g[]$
  []
 
-[11] [12]
-Overfull \hbox (3.32922pt too wide) in paragraph at lines 348--349
-[]\OT1/cmr/m/n/10 The fol-low-ing step-s are de-signed to gen-er-ate the $\OML/cmm/m/it/10 r$\OT1/cmr/m/n/10 th re-al-iza-tion $(\OML/cmm/m/it/10 x[]; y[]; []\OT1/cmr/m/n/10 )$
- []
-
-[13] ("c:\Users\hkg20\Documents\Articles\IS based DPD\tex\SP-ISBasedDPD-hkg\SP-ISbasedDPD-hkg.bbl" [14])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 371.
- [15]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 371.
+[11] [12] [13] [14] <pdfFigures/toolarge_rho1=500.pdf, id=272, 576.65456pt x 316.93407pt>
+File: pdfFigures/toolarge_rho1=500.pdf Graphic file (type pdf)
+ <use pdfFigures/toolarge_rho1=500.pdf>
+Package pdftex.def Info: pdfFigures/toolarge_rho1=500.pdf used on input line 384.
+(pdftex.def)             Requested size: 345.0pt x 189.62027pt.
+ <pdfFigures/appropriate_rho1=20.pdf, id=273, 574.39612pt x 316.18124pt>
+File: pdfFigures/appropriate_rho1=20.pdf Graphic file (type pdf)
+ <use pdfFigures/appropriate_rho1=20.pdf>
+Package pdftex.def Info: pdfFigures/appropriate_rho1=20.pdf used on input line 390.
+(pdftex.def)             Requested size: 345.0pt x 189.91283pt.
+ [15 <c:/Users/hkg20/Documents/Articles/IS based DPD/tex/SP-ISBasedDPD-hkg/pdfFigures/toolarge_rho1=500.pdf>] <pdfFigures/QvsRMSE(opt-IS(R100-500-2000)-SML-MVDR(1))SNR5dB.pdf, id=297, 421.57521pt x 316.50546pt>
+File: pdfFigures/QvsRMSE(opt-IS(R100-500-2000)-SML-MVDR(1))SNR5dB.pdf Graphic file (type pdf)
+ <use pdfFigures/QvsRMSE(opt-IS(R100-500-2000)-SML-MVDR(1))SNR5dB.pdf>
+Package pdftex.def Info: pdfFigures/QvsRMSE(opt-IS(R100-500-2000)-SML-MVDR(1))SNR5dB.pdf used on input line 401.
+(pdftex.def)             Requested size: 345.0pt x 259.0194pt.
+ <pdfFigures/SNRvsRMSE(opt-IS(2000)-SML-MVDR(1))L10.pdf, id=298, 421.57521pt x 316.50546pt>
+File: pdfFigures/SNRvsRMSE(opt-IS(2000)-SML-MVDR(1))L10.pdf Graphic file (type pdf)
+ <use pdfFigures/SNRvsRMSE(opt-IS(2000)-SML-MVDR(1))L10.pdf>
+Package pdftex.def Info: pdfFigures/SNRvsRMSE(opt-IS(2000)-SML-MVDR(1))L10.pdf used on input line 407.
+(pdftex.def)             Requested size: 345.0pt x 259.0194pt.
+ ("c:\Users\hkg20\Documents\Articles\IS based DPD\tex\SP-ISBasedDPD-hkg\SP-ISbasedDPD-hkg.bbl" [16 <c:/Users/hkg20/Documents/Articles/IS based DPD/tex/SP-ISBasedDPD-hkg/pdfFigures/appropriate_rho1=20.pdf>] [17 <c:/Users/hkg20/Documents/Articles/IS based DPD/tex/SP-ISBasedDPD-hkg/pdfFigures/QvsRMSE(opt-IS(R100-500-2000)-SML-MVDR(1))SNR5dB.pdf>] [18 <c:/Users/hkg20/Documents/Articles/IS based DPD/tex/SP-ISBasedDPD-hkg/pdfFigures/SNRvsRMSE(opt-IS(2000)-SML-MVDR(1))L10.pdf>])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 417.
+ [19]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 417.
  ("c:\Users\hkg20\Documents\Articles\IS based DPD\tex\SP-ISBasedDPD-hkg\SP-ISbasedDPD-hkg.aux")
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 371.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 371.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 417.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 417.
 Package rerunfilecheck Info: File `SP-ISbasedDPD-hkg.out' has not changed.
-(rerunfilecheck)             Checksum: 51DE024E3477FF15DED89039BFB367FB;404.
+(rerunfilecheck)             Checksum: 979B105871FA4302D87F4C456B9C7FFC;475.
  ) 
 Here is how much of TeX's memory you used:
- 6828 strings out of 495354
- 96046 string characters out of 3182740
- 193222 words of memory out of 3000000
- 9798 multiletter control sequences out of 15000+200000
+ 6877 strings out of 495354
+ 97284 string characters out of 3182740
+ 193978 words of memory out of 3000000
+ 9827 multiletter control sequences out of 15000+200000
  18243 words of font info for 67 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
- 34i,20n,30p,1049b,430s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx7.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmmib10.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cmextra/cmmib7.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmss8.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmti7.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmti8.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt8.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/symbols/msam7.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on SP-ISbasedDPD-hkg.pdf (15 pages, 382844 bytes).
+ 34i,20n,30p,1176b,466s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx7.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmmib10.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cmextra/cmmib7.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmss8.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmti7.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmti8.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt8.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/symbols/msam7.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/urw/zapfding/uzdr.pfb>
+Output written on SP-ISbasedDPD-hkg.pdf (19 pages, 604895 bytes).
 PDF statistics:
- 385 PDF objects out of 1000 (max. 8388607)
- 95 named destinations out of 1000 (max. 500000)
- 49 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 497 PDF objects out of 1000 (max. 8388607)
+ 110 named destinations out of 1000 (max. 500000)
+ 77 words of extra memory for PDF output out of 10000 (max. 10000000)
 
