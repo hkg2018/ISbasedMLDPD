@@ -23,6 +23,11 @@ T.~Tirer, A.~J. Weiss, High resolution direct position determination of radio
 \newblock \href {http://dx.doi.org/10.1109/LSP.2015.2503921}
   {\path{doi:10.1109/LSP.2015.2503921}}.
 
+\bibitem{2006Efficient}
+A.~Amar, A.~J. Weiss, Efficient position determination of multiple
+  emitters\href {http://dx.doi.org/10.1109/EEEI.2006.321149}
+  {\path{doi:10.1109/EEEI.2006.321149}}.
+
 \bibitem{Kay2000Mean}
 S.~Kay, S.~Saha, Mean likelihood frequency estimation, Signal Processing IEEE
   Transactions on 48~(7) (2000) 1937--1946.
