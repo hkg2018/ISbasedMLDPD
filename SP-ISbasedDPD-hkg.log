@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2020.6.2)  27 AUG 2020 20:27
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2020.6.2)  28 AUG 2020 17:08
 entering extended mode
 **SP-ISbasedDPD-hkg
 ("c:\Users\hkg20\Documents\Articles\IS based DPD\tex\SP-ISBasedDPD-hkg\SP-ISbasedDPD-hkg.tex"
@@ -341,56 +341,56 @@ File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 ) [1
 
 
-{C:/Program Files (x86)/CTEX/UserData/pdftex/config/pdftex.map{Unicode.sfd}{UGBK.sfd}}] [2] [3] [4] [5] [6] [7]
+{C:/Program Files (x86)/CTEX/UserData/pdftex/config/pdftex.map{Unicode.sfd}{UGBK.sfd}}] [2] [3] [4] [5] [6]
 \c@Theorem=\count131
- [8] [9] [10] [11] [12]
-Overfull \hbox (6.60284pt too wide) in paragraph at lines 273--274
+ [7] [8] [9] [10] [11] [12]
+Overfull \hbox (6.60284pt too wide) in paragraph at lines 272--273
 []\OT1/cmr/m/n/10 The pro-cess of gen-er-at-ing $\OML/cmm/m/it/10 Q$ \OT1/cmr/m/n/10 group-s of the re-quired re-al-iza-tion-s $\OMS/cmsy/m/n/10 f\OT1/cmr/m/n/10 ([][]\OML/cmm/m/it/10 ; []\OT1/cmr/m/n/10 )\OMS/cmsy/m/n/10 g[]$
  []
 
 \c@Lemma=\count132
 [13]
-Overfull \hbox (22.4648pt too wide) in paragraph at lines 289--291
+Overfull \hbox (22.4648pt too wide) in paragraph at lines 288--290
 \OT1/cmr/m/n/10 In con-clu-sion, the ap-proach of gen-er-at-ing the $\OML/cmm/m/it/10 q$\OT1/cmr/m/n/10 th group of re-al-iza-tion-s $\OMS/cmsy/m/n/10 f\OT1/cmr/m/n/10 ([][]\OML/cmm/m/it/10 ; []\OT1/cmr/m/n/10 )\OMS/cmsy/m/n/10 g[]$
  []
 
-[14] [15] [16] <pdfFigures/toolarge_rho1=500.pdf, id=304, 576.65456pt x 316.93407pt>
+[14] [15] [16] <pdfFigures/toolarge_rho1=500.pdf, id=306, 576.65456pt x 316.93407pt>
 File: pdfFigures/toolarge_rho1=500.pdf Graphic file (type pdf)
  <use pdfFigures/toolarge_rho1=500.pdf>
-Package pdftex.def Info: pdfFigures/toolarge_rho1=500.pdf used on input line 372.
+Package pdftex.def Info: pdfFigures/toolarge_rho1=500.pdf used on input line 371.
 (pdftex.def)             Requested size: 345.0pt x 189.62027pt.
- <pdfFigures/appropriate_rho1=20.pdf, id=305, 574.39612pt x 316.18124pt>
+ <pdfFigures/appropriate_rho1=20.pdf, id=307, 574.39612pt x 316.18124pt>
 File: pdfFigures/appropriate_rho1=20.pdf Graphic file (type pdf)
  <use pdfFigures/appropriate_rho1=20.pdf>
-Package pdftex.def Info: pdfFigures/appropriate_rho1=20.pdf used on input line 378.
+Package pdftex.def Info: pdfFigures/appropriate_rho1=20.pdf used on input line 377.
 (pdftex.def)             Requested size: 345.0pt x 189.91283pt.
- [17 <c:/Users/hkg20/Documents/Articles/IS based DPD/tex/SP-ISBasedDPD-hkg/pdfFigures/toolarge_rho1=500.pdf>] [18 <c:/Users/hkg20/Documents/Articles/IS based DPD/tex/SP-ISBasedDPD-hkg/pdfFigures/appropriate_rho1=20.pdf>] <pdfFigures/Senario.pdf, id=346, 421.57521pt x 316.50546pt>
+ [17 <c:/Users/hkg20/Documents/Articles/IS based DPD/tex/SP-ISBasedDPD-hkg/pdfFigures/toolarge_rho1=500.pdf>] [18 <c:/Users/hkg20/Documents/Articles/IS based DPD/tex/SP-ISBasedDPD-hkg/pdfFigures/appropriate_rho1=20.pdf>] <pdfFigures/Senario.pdf, id=348, 421.57521pt x 316.50546pt>
 File: pdfFigures/Senario.pdf Graphic file (type pdf)
  <use pdfFigures/Senario.pdf>
-Package pdftex.def Info: pdfFigures/Senario.pdf used on input line 390.
+Package pdftex.def Info: pdfFigures/Senario.pdf used on input line 389.
 (pdftex.def)             Requested size: 345.0pt x 259.0194pt.
- <pdfFigures/QvsRMSE(opt-IS(R100-500-2000)-SML-MVDR(1))SNR5dB.pdf, id=347, 421.57521pt x 316.50546pt>
+ <pdfFigures/QvsRMSE(opt-IS(R100-500-2000)-SML-MVDR(1))SNR5dB.pdf, id=349, 421.57521pt x 316.50546pt>
 File: pdfFigures/QvsRMSE(opt-IS(R100-500-2000)-SML-MVDR(1))SNR5dB.pdf Graphic file (type pdf)
  <use pdfFigures/QvsRMSE(opt-IS(R100-500-2000)-SML-MVDR(1))SNR5dB.pdf>
-Package pdftex.def Info: pdfFigures/QvsRMSE(opt-IS(R100-500-2000)-SML-MVDR(1))SNR5dB.pdf used on input line 396.
+Package pdftex.def Info: pdfFigures/QvsRMSE(opt-IS(R100-500-2000)-SML-MVDR(1))SNR5dB.pdf used on input line 395.
 (pdftex.def)             Requested size: 345.0pt x 259.0194pt.
- <pdfFigures/SNRvsRMSE(opt-IS(2000)-SML-MVDR(1))L10.pdf, id=348, 421.57521pt x 316.50546pt>
+ <pdfFigures/SNRvsRMSE(opt-IS(2000)-SML-MVDR(1))L10.pdf, id=350, 421.57521pt x 316.50546pt>
 File: pdfFigures/SNRvsRMSE(opt-IS(2000)-SML-MVDR(1))L10.pdf Graphic file (type pdf)
  <use pdfFigures/SNRvsRMSE(opt-IS(2000)-SML-MVDR(1))L10.pdf>
-Package pdftex.def Info: pdfFigures/SNRvsRMSE(opt-IS(2000)-SML-MVDR(1))L10.pdf used on input line 402.
+Package pdftex.def Info: pdfFigures/SNRvsRMSE(opt-IS(2000)-SML-MVDR(1))L10.pdf used on input line 401.
 (pdftex.def)             Requested size: 345.0pt x 259.0194pt.
- <pdfFigures/BWvsRMSE(snr5dBL10).pdf, id=349, 421.57521pt x 316.50546pt>
+ <pdfFigures/BWvsRMSE(snr5dBL10).pdf, id=351, 421.57521pt x 316.50546pt>
 File: pdfFigures/BWvsRMSE(snr5dBL10).pdf Graphic file (type pdf)
  <use pdfFigures/BWvsRMSE(snr5dBL10).pdf>
-Package pdftex.def Info: pdfFigures/BWvsRMSE(snr5dBL10).pdf used on input line 408.
+Package pdftex.def Info: pdfFigures/BWvsRMSE(snr5dBL10).pdf used on input line 407.
 (pdftex.def)             Requested size: 345.0pt x 259.0194pt.
  [19] [20 <c:/Users/hkg20/Documents/Articles/IS based DPD/tex/SP-ISBasedDPD-hkg/pdfFigures/Senario.pdf>] [21 <c:/Users/hkg20/Documents/Articles/IS based DPD/tex/SP-ISBasedDPD-hkg/pdfFigures/QvsRMSE(opt-IS(R100-500-2000)-SML-MVDR(1))SNR5dB.pdf>] [22 <c:/Users/hkg20/Documents/Articles/IS based DPD/tex/SP-ISBasedDPD-hkg/pdfFigures/SNRvsRMSE(opt-IS(2000)-SML-MVDR(1))L10.pdf>] [23 <c:/Users/hkg20/Documents/Articles/IS based DPD/tex/SP-ISBasedDPD-hkg/pdfFigures/BWvsRMSE(snr5dBL10).pdf>] [24] [25] ("c:\Users\hkg20\Documents\Articles\IS based DPD\tex\SP-ISBasedDPD-hkg\SP-ISbasedDPD-hkg.bbl" [26])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 472.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 471.
  [27]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 472.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 471.
  ("c:\Users\hkg20\Documents\Articles\IS based DPD\tex\SP-ISBasedDPD-hkg\SP-ISbasedDPD-hkg.aux")
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 472.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 472.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 471.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 471.
 Package rerunfilecheck Info: File `SP-ISbasedDPD-hkg.out' has not changed.
 (rerunfilecheck)             Checksum: 44FC5D08491E5E96FA04C5F1CF4AB3E1;685.
  ) 
@@ -403,9 +403,9 @@ Here is how much of TeX's memory you used:
  14 hyphenation exceptions out of 8191
  34i,20n,30p,2566b,460s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx7.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmmib10.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cmextra/cmmib7.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmss8.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmti7.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmti8.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt8.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/symbols/msam7.pfb><C:/Program Files (x86)/CTEX/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on SP-ISbasedDPD-hkg.pdf (27 pages, 684719 bytes).
+Output written on SP-ISbasedDPD-hkg.pdf (27 pages, 684899 bytes).
 PDF statistics:
- 636 PDF objects out of 1000 (max. 8388607)
+ 638 PDF objects out of 1000 (max. 8388607)
  126 named destinations out of 1000 (max. 500000)
  119 words of extra memory for PDF output out of 10000 (max. 10000000)
 

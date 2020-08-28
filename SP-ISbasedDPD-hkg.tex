@@ -131,11 +131,11 @@ In this subsection, we will derive the \emph{Concentrated} Likelihood Function (
 \begin{align}\label{Lorign}
 \mathcal{L}(\boldsymbol{P},\mathring{\boldsymbol{t}},\boldsymbol{\alpha})\triangleq-\sum_{j=1}^{N_r}\sum_{l=1}^L\Vert \boldsymbol{y}_j(l)-\boldsymbol{\Gamma}_{j,l}(\boldsymbol{P},\mathring{\boldsymbol{t}})\boldsymbol{\alpha}_j\Vert^2
 \end{align}
-To get a compact CLF, we define the manifold matrix for the $j$th received signal by collecting and stacking all the $L$ signal sections,
+To get a compact CLF, we define the manifold matrix for the $j$th received signal by collecting and stacking all $L$ signal sections,
 \begin{align}\label{Gammaj}
     \boldsymbol{\Gamma}_{j}(\boldsymbol{P},\mathring{\boldsymbol{t}})\triangleq[\boldsymbol{\Gamma}_{j,1}^T,...,\boldsymbol{\Gamma}_{j,L}^T]^T\in \mathbb{C}^{LNM\times Q}
 \end{align}
-The CLF \eqref{Lorign} can be rewritten as the compact one as follows,
+The CLF \eqref{Lorign} can be rewritten as follows,
 \begin{align}\label{L}
     \mathcal{L}(\boldsymbol{P},\mathring{\boldsymbol{t}},\boldsymbol{\alpha})=-\sum_{j=1}^{N_r}\Vert \boldsymbol{y}_j-\boldsymbol{\Gamma}_{j}(\boldsymbol{P},\mathring{\boldsymbol{t}})\boldsymbol{\alpha}_j\Vert^2
 \end{align}
@@ -156,11 +156,10 @@ The joint ML estimates of $\boldsymbol{P}$ and $\mathring{\boldsymbol{t}}$ are t
 
 The reduced-dimension optimization problem \eqref{MLE} still has $Q(D+1)$ unknown parameters (including $Q$ $D$-dimensional location vectors $\lbrace \boldsymbol{p}_q\rbrace_{q=1}^Q$ and $Q$ transmitted times scalar $\lbrace \mathring{t}_q\rbrace_{q=1}^Q$). Thus, the exact multi-dimensional ML estimation will require an impractical multi-dimensional search over the parameter space, which takes exponential complexity.
 
-To solve the multidimensional ML problem \eqref{MLE} efficiently, the approach proposed in \cite{DPD2005} is to decouple the problem into several $D$-dimensional optimization problems, under the assumption that the number of sections $L\to \infty$ or $L$ is sufficiently large in practice. Considering the length of section has low limit, i.e., $T/L\gg \max{\tau_j(\boldsymbol{p}_q)}$, the number of sections $L$ is proportional to the total observation time $T$. The observation time $T$ is, however, limited in some practical reasons such as the request for real-time processing or the assumption that emitters are stationary during the observation. The decoupling approach proposed in \cite{DPD2005} may, therefore, be failure for the assumption is difficult to be satisfied in some practical cases, especially when the emitters are adjacent to one another.
+To solve the multidimensional ML problem \eqref{MLE} efficiently, the approach proposed in \cite{DPD2005} is to transform the problem into several $D$-dimensional optimization problems with assuming the number of sections $L\to \infty$. Considering the length of section is limited by $T/L\gg \max{\tau_j(\boldsymbol{p}_q)}$, the number of sections $L$ is then proportional to the total observation time $T$. The observation time $T$ is, however, limited in some practical reasons such as the request for real-time processing or the assumption that emitters are stationary during the observation. The MF based DPD approach proposed in \cite{DPD2005} may, therefore, be failure for the finite signal sections in some practical cases, especially when the emitters are adjacent to one another.
 
 \section{Global Maximization of The CLF}\label{sec3}
-Like the previous works within other estimation problems (\cite{ISdoa2008,Kay2000Mean,Saha2002Maximum,Wang2010Maximum,Chen2008Joint}), we resort to the optimization framework, which consists of the Pincus' theorem and the powerful IS method, to achieve the ML solution of the adjacent emitters' positions efficiently and accurately, using finite observation resources such as the observation time, the signal bandwidth and the array aperture.
-
+Like the previous works within other estimation problems (\cite{Kay2000Mean,ISdoa2008,Saha2002Maximum,Wang2010Maximum,Chen2008Joint}), we resort to the optimization framework \cite{Kay2000Mean}, consisting of the Pincus' theorem \cite{Pincus1968A} and the IS technique, to efficiently approximate the global solution of the multi-dimensional ML problem, using finite observation resources such as the observation time, the signal bandwidth and the array aperture.
 First of all, we introduce the theorem of Pincus \cite{Pincus1968A} as follows.
 \theoremstyle{definition} \newtheorem{Theorem}{Theorem}
 \begin{Theorem}
@@ -169,7 +168,7 @@ First of all, we introduce the theorem of Pincus \cite{Pincus1968A} as follows.
     \hat{x}_i=\lim_{\rho\to \infty}\frac{\idotsint x_i e^{\rho F(\boldsymbol{x})}dx_1\cdots dx_n}{\idotsint e^{\rho F(\boldsymbol{x})}dx_1\cdots dx_n}
     \end{align}
 \end{Theorem}
-Applying this general result to our multidimensional optimization problem \eqref{MLE} with $\boldsymbol{x}\triangleq[\boldsymbol{P},\mathring{\boldsymbol{t}}]$ and $F(\boldsymbol{x})\triangleq \mathcal{L}_c(\boldsymbol{P},\mathring{\boldsymbol{t}})$ leads to the following required ML estimation for the emitter locations and the transmitted times respectively,
+Applying this general result to our multidimensional optimization problem \eqref{MLE} with $\boldsymbol{x}\triangleq[\boldsymbol{P},\mathring{\boldsymbol{t}}]$ and $F(\boldsymbol{x})\triangleq \mathcal{L}_c(\boldsymbol{P},\mathring{\boldsymbol{t}})$ leads to the following ML estimation for the emitter locations and the transmitted times respectively,
 \begin{align}\label{MI1}
     \hat{\boldsymbol{p}}_q(d)=\idotsint \boldsymbol{p}_q(d) \mathcal{F}(\boldsymbol{P},\mathring{\boldsymbol{t}})d\boldsymbol{p}_1(1) \cdots d\mathring{t}_Q
 \end{align}
@@ -181,9 +180,9 @@ where
 \begin{align}\label{gc}
     \mathcal{F}(\boldsymbol{P},\mathring{\boldsymbol{t}})\triangleq\lim_{\rho\to \infty}\frac{e^{\rho \mathcal{L}_c(\boldsymbol{P},\mathring{\boldsymbol{t}})}}{\idotsint e^{\rho \mathcal{L}_c(\boldsymbol{P},\mathring{\boldsymbol{t}})}d\boldsymbol{p}_1(1) \cdots d\mathring{t}_Q}
 \end{align}
-The Pincus' theorem can be interpreted intuitively as follows: as $\rho$ tends to infinity ($\rho$ taking a sufficiently large value in practice), $\mathcal{F}(\boldsymbol{P},\mathring{\boldsymbol{t}})$ becomes a Dirac-delta function centered at the maximum of $\mathcal{L}_c(\boldsymbol{P},\mathring{\boldsymbol{t}})$, which eliminates the integrals in \eqref{MI1} and \eqref{MI2} and chooses its center (i.e., the position of the maximum of $\mathcal{L}_c(\boldsymbol{P},\mathring{\boldsymbol{t}})$) as the global ML solution directly. 
+The Pincus' theorem can be interpreted intuitively as follows: as $\rho$ tends to infinity ($\rho$ taking a sufficiently large value in practice), $\mathcal{F}(\boldsymbol{P},\mathring{\boldsymbol{t}})$ becomes a Dirac-delta function centered at the global maximum of $\mathcal{L}_c(\boldsymbol{P},\mathring{\boldsymbol{t}})$, which eliminates the integrals in \eqref{MI1} and \eqref{MI2} and chooses its center (i.e., the global ML solution) as the result directly. 
 
-Nevertheless, the multidimensional grid search we attempt to avoid is transformed into several multidimensional integrations in \eqref{MI1} and \eqref{MI2}, which bear the same computational load. By closely analyzing the properties of function \eqref{gc}, it, fortunately, turns out that $\mathcal{F}(\boldsymbol{P},\mathring{\boldsymbol{t}})$ can be seen as a pdf since it is nonnegative and integrates to one. As a pdf, $\mathcal{F}(\boldsymbol{P},\mathring{\boldsymbol{t}})$ indicates the probability of the candidate parameter values being true. Furthermore, the estimators in \eqref{MI1} and \eqref{MI2} can be regarded as statistical expectations, i.e., we have,
+Nevertheless, the multidimensional grid searching we attempt to avoid is transformed into several multidimensional integrations in \eqref{MI1} and \eqref{MI2}, which bear the same computational load. By closely analyzing the properties of function \eqref{gc}, it turns out that $\mathcal{F}(\boldsymbol{P},\mathring{\boldsymbol{t}})$ can be seen as a pdf since it is nonnegative and integrates to one. As a pdf, $\mathcal{F}(\boldsymbol{P},\mathring{\boldsymbol{t}})$ indicates the probability of the candidate parameter values being true. Furthermore, the estimators in \eqref{MI1} and \eqref{MI2} can be regarded as statistical expectations, i.e., we have,
 \begin{align}\label{ex}
     \hat{\boldsymbol{p}}_q(d)\triangleq \mathbb{E}_{\mathcal{F}(\boldsymbol{P},\mathring{\boldsymbol{t}})}\{\boldsymbol{p}_q(d)\} \quad \hat{\mathring{t}}_q\triangleq \mathbb{E}_{\mathcal{F}(\boldsymbol{P},\mathring{\boldsymbol{t}})}\{\mathring{t}_q\}
 \end{align}
@@ -192,7 +191,7 @@ Consequently, the multidimensional integrations are transformed into the statist
 \begin{align}\label{SM}
     \hat{\boldsymbol{p}}_q(d)=\frac{1}{R}\sum_{r=1}^R \boldsymbol{p}_q^{(r)}(d) \quad \hat{\mathring{t}}_q=\frac{1}{R}\sum_{r=1}^R \mathring{t}_q^{(r)}
 \end{align}
-Clearly, as the number of realizations $R$ increases, the two sample mean in \eqref{SM} approach the statistical expectations in \eqref{ex}. Unfortunately, the extremely non-linear property of the pdf $\mathcal{F}(\boldsymbol{P},\mathring{\boldsymbol{t}})$ makes it impractical to generate $\lbrace \boldsymbol{P}^{(r)}\rbrace_{r=1}^R$ and $\lbrace \mathring{\boldsymbol{t}}^{(r)}\rbrace_{r=1}^R$ using itself. To sidestep this problem, we can resort to the IS method \cite{ISdoa2008,Kay2000Mean} and rewrite \eqref{MI1} and \eqref{MI2} in the following equivalent forms,
+Clearly, as the number of realizations $R$ increases, the two sample mean in \eqref{SM} approach the statistical expectations in \eqref{ex}. Unfortunately, the extremely non-linear property of the pdf $\mathcal{F}(\boldsymbol{P},\mathring{\boldsymbol{t}})$ makes it impractical to generate realizations $\lbrace \boldsymbol{P}^{(r)}\rbrace_{r=1}^R$ and $\lbrace \mathring{\boldsymbol{t}}^{(r)}\rbrace_{r=1}^R$. To sidestep this problem, we can resort to the IS method \cite{Kay2000Mean,ISdoa2008} and rewrite \eqref{MI1} and \eqref{MI2} in the following equivalent forms,
 \begin{align}\label{IS-P}
     \hat{\boldsymbol{p}}_q(d)=\idotsint \boldsymbol{p}_q(d) \frac{\mathcal{F}(\boldsymbol{P},\mathring{\boldsymbol{t}})}{\mathcal{G}(\boldsymbol{P},\mathring{\boldsymbol{t}})}\mathcal{G}(\boldsymbol{P},\mathring{\boldsymbol{t}})d\boldsymbol{p}_1(1) \cdots d\mathring{t}_Q
 \end{align}
@@ -203,13 +202,13 @@ where $\mathcal{G}(\boldsymbol{P},\mathring{\boldsymbol{t}})$ is another pdf cal
 \begin{align}\label{IS-ex}
     \hat{\boldsymbol{p}}_q(d)\triangleq \mathbb{E}_{\mathcal{G}(\boldsymbol{P},\mathring{\boldsymbol{t}})}\{\eta(\boldsymbol{P},\mathring{\boldsymbol{t}})\boldsymbol{p}_q(d)\} \quad \hat{\mathring{t}}_q\triangleq \mathbb{E}_{\mathcal{G}(\boldsymbol{P},\mathring{\boldsymbol{t}})}\{\eta(\boldsymbol{P},\mathring{\boldsymbol{t}})\mathring{t}_q\}
 \end{align}
-where $\eta(\boldsymbol{P},\mathring{\boldsymbol{t}})$ is called \emph{importance weight} (IW) corresponding to the realizations of $\boldsymbol{P},\mathring{\boldsymbol{t}}$ and defined as,
+where $\eta(\boldsymbol{P},\mathring{\boldsymbol{t}})$ is called \emph{importance weight} (IW) and defined as,
 \begin{align}\label{eta}
     \eta(\boldsymbol{P},\mathring{\boldsymbol{t}})\triangleq\frac{\mathcal{F}(\boldsymbol{P},\mathring{\boldsymbol{t}})}{\mathcal{G}(\boldsymbol{P},\mathring{\boldsymbol{t}})}
 \end{align}
 
-If $\mathcal{G}(\boldsymbol{P},\mathring{\boldsymbol{t}})$ is carefully designed, the realizations $\lbrace \boldsymbol{P}^{(r)}\rbrace_{r=1}^R$ and $\lbrace \mathring{\boldsymbol{t}}^{(r)}\rbrace_{r=1}^R$, which correspond to large IW $\eta(\boldsymbol{P},\mathring{\boldsymbol{t}})$, can be generated from the IF $\mathcal{G}(\boldsymbol{P},\mathring{\boldsymbol{t}})$ efficiently. the expectations in \eqref{IS-ex} can be approximated at any desired degree of accuracy (by increasing $R$) using the corresponding sample mean estimates.
-In fact, the choice of $\mathcal{G}(\boldsymbol{P},\mathring{\boldsymbol{t}})$ is a tradeoff between the ease and efficiency of sampling (i.e., the generation of the required realizations). The appropriate choice of the IF will be discussed in the following section. 
+If IF $\mathcal{G}(\boldsymbol{P},\mathring{\boldsymbol{t}})$ is carefully designed, the realizations $\lbrace \boldsymbol{P}^{(r)}\rbrace_{r=1}^R$ and $\lbrace \mathring{\boldsymbol{t}}^{(r)}\rbrace_{r=1}^R$ corresponding to large IWs can be generated from the IF $\mathcal{G}(\boldsymbol{P},\mathring{\boldsymbol{t}})$ efficiently. the expectations in \eqref{IS-ex} can be approximated at any desired degree of accuracy (by increasing $R$) using the corresponding sample mean estimates.
+In fact, the choice of $\mathcal{G}(\boldsymbol{P},\mathring{\boldsymbol{t}})$ is a tradeoff between the ease and efficiency of the sampling (i.e., the generation of the required realizations). The appropriate choice of the IF will be discussed in the following section. 
 
 \section{Appropriate Choice of Importance Function}
 To generate the required realizations efficiently, the appropriate $\mathcal{G}(\boldsymbol{P},\mathring{\boldsymbol{t}})$ must be designed as close as possible to $\mathcal{F}(\boldsymbol{P},\mathring{\boldsymbol{t}})$ while it should also take the ease of generating the realizations into account. 
@@ -220,7 +219,7 @@ In order to find the appropriate $\mathcal{G}(\boldsymbol{P},\mathring{\boldsymb
 \end{align}
 According to the general results from probability theory, the independence among $Q$ groups of RV pairs $\lbrace(\boldsymbol{p}_q,\mathring{t}_q)\rbrace_{q=1}^Q$ is introduced by the assumption for the factorized form in \eqref{SForm}. Hence, we can independently generate $Q$ groups of realizations for $(D+1)$-dimensional random vectors $\lbrace\boldsymbol{p}_q^{(r)},\mathring{t}_q^{(r)}\rbrace_{r=1}^{R},q=1,...,Q$ using $g_q(\boldsymbol{p}_q,\mathring{t}_q),q=1,...,Q$ respectively, instead of using $\mathcal{G}(\boldsymbol{P},\mathring{\boldsymbol{t}})$ to generate realizations for $Q(D+1)$-dimensional random vector $\lbrace\boldsymbol{P}^{(r)},\mathring{\boldsymbol{t}}^{(r)}\rbrace_{r=1}^{R}$ with difficulty. 
 
-According to the definition of $\mathcal{F}(\boldsymbol{P},\mathring{\boldsymbol{t}})$ \eqref{gc}, the assumption for the factorized form in \eqref{SForm} requests that the CLF $\mathcal{L}_c(\boldsymbol{P},\mathring{\boldsymbol{t}})$ in \eqref{gc} has summation form with respect to $q$. Note that the product $\boldsymbol{y}_j^H\boldsymbol{\Gamma}_{j}$ in CLF \eqref{CLF} is a $Q$-dimensional vector. Diagonalizing the inverse matrix $(\boldsymbol{\Gamma}_{j}^H\boldsymbol{\Gamma}_{j})^{-1}$ is, therefore, the key step to the separable form \eqref{SForm}. According to the definition of $\boldsymbol{\Gamma}_{j}$ in \eqref{Gammaj},  $\boldsymbol{\Gamma}_{j,l}$ in \eqref{Gammajl}, $\boldsymbol{\Gamma}_{j,n,l}$ in \eqref{Gammajnl} and $\boldsymbol{\gamma}_{j,q,n,l}$ in \eqref{gamma}, the $(u,v)$th element of the normalized matrix product $\boldsymbol{\Gamma}_{j}^H\boldsymbol{\Gamma}_{j}$ is given by,
+According to the definition of $\mathcal{F}(\boldsymbol{P},\mathring{\boldsymbol{t}})$ \eqref{gc}, the assumption for the factorized form in \eqref{SForm} requests that the CLF $\mathcal{L}_c(\boldsymbol{P},\mathring{\boldsymbol{t}})$ in \eqref{gc} has summation form with respect to $q$. Note that the product $\boldsymbol{y}_j^H\boldsymbol{\Gamma}_{j}$ in CLF \eqref{CLF} is a $Q$-dimensional vector. Diagonalizing the inverse matrix $(\boldsymbol{\Gamma}_{j}^H\boldsymbol{\Gamma}_{j})^{-1}$ in CLF \eqref{CLF} is, therefore, the key step to the separable form. According to the definition of $\boldsymbol{\Gamma}_{j}$ in \eqref{Gammaj},  $\boldsymbol{\Gamma}_{j,l}$ in \eqref{Gammajl}, $\boldsymbol{\Gamma}_{j,n,l}$ in \eqref{Gammajnl} and $\boldsymbol{\gamma}_{j,q,n,l}$ in \eqref{gamma}, the $(u,v)$th element of the normalized matrix product $\boldsymbol{\Gamma}_{j}^H\boldsymbol{\Gamma}_{j}$ is given by,
 \begin{align}\label{off-diagonal}
     &[\frac{1}{MNL}\boldsymbol{\Gamma}_{j}^H\boldsymbol{\Gamma}_{j}]_{u,v}\\
     &=\frac{1}{MNL}\sum_{l=1}^L\sum_{n=1}^N \boldsymbol{\gamma}_{j,u,n,l}^H\boldsymbol{\gamma}_{j,v,n,l}\\
@@ -230,9 +229,9 @@ where $r_{doa,j}^{(u,v)}, r_{toa,j}^{(u,v)}, r_{sig,n}^{(u,v)}$ denote the $(u,v
 \begin{align}\label{GammaDiag}
     \boldsymbol{\Gamma}_{j}^H\boldsymbol{\Gamma}_{j}=MNL\cdot \boldsymbol{I}
 \end{align}
-where $\boldsymbol{I}$ is the identity matrix, the coefficient $MNL$ is the diagonal element of $\boldsymbol{\Gamma}_{j}^H\boldsymbol{\Gamma}_{j}$. 
+where $\boldsymbol{I}$ is the identity matrix, the coefficient $MNL$ is the diagonal elements of $\boldsymbol{\Gamma}_{j}^H\boldsymbol{\Gamma}_{j}$. 
 
-It is worthy to note that the lost correlation information can be ignored when there are enough observation resources. To be specific, large array aperture (with large $M$), large signal bandwidth (with large $N$) or many signal sections (with large $L$) all make the off-diagonal correlation coefficients such small that the corresponding correlation information is negligible, which is the essential assumption in the MF-DPD technique \cite{2004Direct}. While the same correlation information is embedded in the IWs \eqref{eta} in our IS based optimization framework so the IF can be designed without the correlation information as long as the realizations in the vicinity of the exact ML solutions can be generated.
+It is worthy to note that the lost correlation information can be ignored when there are enough observation resources. To be specific, large array aperture (with large $M$), large signal bandwidth (with large $N$) or many signal sections (with large $L$) all make the off-diagonal correlation coefficients such small that the corresponding correlation information is negligible, which is the essential assumption in the MF-DPD technique \cite{2004Direct}. While the same correlation information is embedded in the IWs \eqref{eta} so the IF $\mathcal{G}(\boldsymbol{P},\mathring{\boldsymbol{t}})$ can be designed without the correlation information as long as the realizations in the vicinity of the exact ML solutions can be generated from the designed IF.
 
 Substituting \eqref{GammaDiag} into \eqref{CLF} and ignoring the constant coefficient, we get the summation form of CLF as follows,
 \begin{align}\label{GLc}
